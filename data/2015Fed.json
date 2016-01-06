@@ -1,0 +1,68 @@
+{
+    "single": [
+        {
+            "bottom": 0,
+            "top": 9225,
+            "rate": 0.10,
+            "flatTax": 0
+        }, 
+        {
+            "bottom": 9226,
+            "top": 37450,
+            "rate": 0.15,
+            "flatTax": 922.50
+        },
+        {
+            "bottom": 37451,
+            "top": 90750,
+            "rate": 0.25,
+            "flatTax": 5156.25
+        },
+        {
+            "bottom": 90751,
+            "top": 189300,
+            "rate": 0.28,
+            "flatTax": 18481.25
+        },
+        {
+            "bottom": 189301,
+            "top": 411500,
+            "rate": 0.33,
+            "flatTax": 46075.25
+        },
+        {
+            "bottom": 411501,
+            "top": 413200,
+            "rate": 0.35,
+            "flatTax": 119401.25
+        },
+        {
+            "bottom": 413201,
+            "top": 0,
+            "rate": 0.396,
+            "flatTax": 119996.25
+        }
+    ],
+    "other": {
+        "medicare" : 0.0145,
+        "socialSecurity" : {
+            "top": 118500,
+            "rate": 0.062
+        }
+    },
+    "exemptions": {
+        "amount" : 4000,
+        "phaseOuts": [
+            {"single": 258250},
+            {"marriedJoint": 309900},
+            {"marriedSeparate": 157950},
+            {"hoh": 284050}
+        ]
+    },
+    "deductions": {
+        "single": 6300,
+        "marriedJoint": 12600,
+        "marriedSeparate": 6300,
+        "hoh": 9250
+    }
+}
