@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 
 var definePlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
@@ -20,7 +21,8 @@ module.exports = {
   module: {
     loaders: [
       {test: /\.jsx$/, loader: 'jsx-loader?harmony'},
-      {test: /\.js$/ , loader: 'jsx-loader?harmony'}
+      {test: /\.js$/ , loader: 'jsx-loader?harmony'},
+      {test: path.join(__dirname, 'es6'), loader: 'babel-loader'}
     ]
   },
   plugins: [
