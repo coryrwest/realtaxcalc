@@ -1,7 +1,7 @@
 var React = require('react');
 var Formsy = require('formsy-react');
 
-var FederalSettingsComponent = React.createClass({
+var StateSettingsComponent = React.createClass({
     render: function () {      
       return (
         <div className={this.props.visible ? "visible" : "hidden"}>
@@ -11,4 +11,4 @@ var FederalSettingsComponent = React.createClass({
     }
 });
 
-module.exports = FederalSettingsComponent;
+module.exports = StateSettingsComponent;

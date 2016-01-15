@@ -1,8 +1,25 @@
 var React = require('react');
 var Settings = require('./SettingsComponent.jsx');
+var Overview = require('./OverviewComponent.jsx');
+var State = require('../state');
 
-var NavBarComponent = React.createClass({
+require('../reactions');
+
+var BodyComponent = React.createClass({
+    componentDidMount: function () {
+        var me = this;
+
+        // Here the magic happens. Everytime that the
+        // state is updated the app will re-render.
+        // A real data driven app.
+        State.on('update', function(){
+            console.log("State is updating");
+            me.forceUpdate();
+        });
+    },
   render: function() {
+      var state = State.get();
+      
     return (
       <div className="container">
         <div className="row">
@@ -12,23 +29,17 @@ var NavBarComponent = React.createClass({
                 Most other online calculators do not give you the full picture when you are trying to calculate your tax. 
                 This one does.</p>
             </div>
-        </div>
-        <div className="row">
-            <div className="col-md-12">
-                <Settings />
+            <div className="col-md-6">
+                <Settings state={state} />
             </div>
         </div>
         <div className="row">
             <div className="col-md-12">
                 Inputs
             </div>
-        </div>
-        <div className="row">
             <div className="col-md-12">
-                Overview
+                <Overview state={state} />
             </div>
-        </div>
-        <div className="row">
             <div className="col-md-12">
                 Table
             </div>
@@ -38,4 +49,4 @@ var NavBarComponent = React.createClass({
   }
 });
 
-module.exports = NavBarComponent;
+module.exports = BodyComponent;

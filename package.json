@@ -10,7 +10,9 @@
     "test": "mocha --compilers js:babel-core/register tests"
   },
   "dependencies": {
+    "accounting": "^0.4.1",
     "freezer-js": "^0.9.4",
+    "json-loader": "^0.5.4",
     "react": "^0.14.5",
     "react-dom": "^0.14.5"
   },
