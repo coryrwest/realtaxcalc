@@ -4,6 +4,7 @@ var Overview = require('./OverviewComponent.jsx');
 var State = require('../state');
 
 require('../reactions');
+require('../styles/bs-callout.scss');
 
 var BodyComponent = React.createClass({
     componentDidMount: function () {

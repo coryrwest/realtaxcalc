@@ -10,7 +10,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'build'),
         filename: 'bundle.js',
-        publicPath: '/static/'
+        publicPath: '/static'
     },
     module: {
         loaders: [
@@ -19,7 +19,8 @@ module.exports = {
                 loaders: ['react-hot', 'jsx-loader?harmony'], 
                 include: path.join(__dirname, 'src')
             },
-            { test: /\.js$/, loader: 'babel-loader' }
+            { test: /\.js$/, loader: 'babel-loader' },
+            { test: /\.scss$/, loader: 'style!css!sass' }
             //{test: path.join(__dirname, 'src/common'), loader: 'babel-loader'}
         ]
     },
