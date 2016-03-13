@@ -1,5 +1,6 @@
 module.exports = {
     storeName: 'realTaxCalc:taxSettings',
+    scenariostoreName: 'realTaxCalc:scenarioSettings',
     filingStatuses: [
         {
             value : "single",

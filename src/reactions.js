@@ -15,12 +15,13 @@ var Globals = require('./globals');
  * @param  {Key} The setting key. {Value} The setting value.
  */
 State.on('setting:set', function(name, value){
-    console.log('Setting ' + name + ' ' + value);
+    console.log('Setting ' + name + ' ' + value + ' Saving');
     var setting = {};
     setting[name] = value;
     State.get().set(setting);
     // Save the state in localStorage
     Utils.store(Globals.storeName, State.get());
+    console.log('Setting ' + name + ' ' + value + ' Saved');
 });
 
 /**

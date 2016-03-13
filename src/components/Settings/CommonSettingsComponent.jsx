@@ -1,8 +1,8 @@
 var React = require('react');
 var Formsy = require('formsy-react');
 var FRC = require('formsy-react-components');
-var State = require('../state');
-var Globals = require('../globals');
+var State = require('../../state');
+var Globals = require('../../globals');
 
 var Select = FRC.Select;
 var Input = FRC.Input;

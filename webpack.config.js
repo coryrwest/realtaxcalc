@@ -1,11 +1,8 @@
 var webpack = require('webpack');
 var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: [
-        'webpack-dev-server/client?http://localhost:3002',
-        'webpack/hot/only-dev-server',
         './src/index.jsx'
     ],
     output: {
@@ -17,16 +14,13 @@ module.exports = {
         loaders: [
             {
                 test: /\.jsx$/, 
-                loaders: ['react-hot', 'jsx-loader?harmony'], 
+                loaders: ['jsx-loader?harmony'], 
                 include: path.join(__dirname, 'src')
             },
-            { test: /\.js$/, loader: 'babel-loader' },
-            { test: /\.scss$/, loader: ExtractTextPlugin.extract('style','css!sass') }
-            //{test: path.join(__dirname, 'src/common'), loader: 'babel-loader'}
+            { test: /\.js$/, loader: 'babel-loader', query: {
+                presets: ['react', 'es2015']
+            }},
+            { test: /\.scss$/, loaders: ['style', 'css', 'sass'] }
         ]
     },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin('styles/bundle.css'),
-    ]
 };

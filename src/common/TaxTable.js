@@ -42,7 +42,7 @@ class TaxTable {
         }
     }
     
-    determineBracketAndCalculateTax(filingStatus, agi) {
+    determineBracketAndCalculateTax(filingStatus, agi) {        
         // Get the bracket type
         var typedBrackets = {};
         if(filingStatus == "single") {
@@ -59,24 +59,25 @@ class TaxTable {
         }
         
         // Get the bracket
-        var bracket = {};
-        for (var i = 0; i < typedBrackets.length; i++) {        
-            if((agi < typedBrackets[i].top || typedBrackets[i].top == 0) && agi > typedBrackets[i].bottom) {
-                bracket = typedBrackets[i];
+        var tax = 0;
+        
+        if(agi !== 0) {
+            var bracket = {};
+            for (var i = 0; i < typedBrackets.length; i++) {        
+                if((agi < typedBrackets[i].top || typedBrackets[i].top == 0) && agi > typedBrackets[i].bottom) {
+                    bracket = typedBrackets[i];
+                }
             }
+            
+            tax = bracket.calculateBracketTax(agi);
         }
-        
-        var tax = bracket.calculateBracketTax(agi);
-        
-        console.log(tax);
         
         return tax;
     }
     
     calculateOtherTax(agi) {
         // FICA
-        var otherTax = this.otherTax.calculateOtherTax(agi);
-        
+        var otherTax = this.otherTax.calculateOtherTax(agi);        
         return otherTax;
     }
 }

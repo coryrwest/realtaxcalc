@@ -1,5 +1,6 @@
 var React = require('react');
-var Settings = require('./SettingsComponent.jsx');
+var GlobalSettings = require('./Settings/GlobalSettingsComponent.jsx');
+var ScenarioSettings = require('./Settings/ScenarioSettingsComponent.jsx');
 var Overview = require('./OverviewComponent.jsx');
 var State = require('../state');
 
@@ -9,44 +10,48 @@ require('../styles/bs-callout.scss');
 var BodyComponent = React.createClass({
     componentDidMount: function () {
         var me = this;
-
         // Here the magic happens. Everytime that the
         // state is updated the app will re-render.
-        // A real data driven app.
         State.on('update', function(){
             console.log("State is updating");
             me.forceUpdate();
         });
     },
-  render: function() {
-      var state = State.get();
+    render: function() {
+        var state = State.get();
       
-    return (
-      <div className="container">
-        <div className="row">
-            <div className="col-md-12">
-               <p className="bs-callout bs-callout-info">This tax calulator was built to give you a complete image of your tax burden. 
-                Including FICA and other state or local taxes that you will have to pay. 
-                Most other online calculators do not give you the full picture when you are trying to calculate your tax. 
-                This one does.</p>
+        return (
+        <div className="container">
+            <div className="row">
+                <div className="col-md-12">
+                <p className="bs-callout bs-callout-info">This tax calulator was built to give you a complete image of your tax burden. 
+                    Including FICA and other state or local taxes that you will have to pay. 
+                    Most other online calculators do not give you the full picture when you are trying to calculate your tax. 
+                    This one does.</p>
+                </div>
+                <div className="col-md-6">
+                    <GlobalSettings state={state} />
+                </div>
             </div>
-            <div className="col-md-6">
-                <Settings state={state} />
+            <div className="row">
+                <div className="col-md-6">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <ScenarioSettings state={state} />
+                        </div>
+                        <div className="col-md-12">
+                            <Overview state={state} />
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-6">
+                    <div className="row">
+                        <button className="btn btn-default">Add Scenario</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div className="row">
-            <div className="col-md-12">
-                Inputs
-            </div>
-            <div className="col-md-12">
-                <Overview state={state} />
-            </div>
-            <div className="col-md-12">
-                Table
-            </div>
-        </div>
-      </div>
-    );
+        );
   }
 });
 
