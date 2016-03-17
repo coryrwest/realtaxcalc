@@ -1,7 +1,7 @@
 import FedTaxBracket from "./FedTaxBracket"
 import FedOtherTax from "./FedOtherTax"
 
-class TaxTable {
+class FedTaxTable {
     constructor(tableJson) {
         this.singleBrackets = [];
         this.marriedJointBrackets = [];
@@ -42,7 +42,7 @@ class TaxTable {
         }
     }
     
-    determineBracketAndCalculateTax(filingStatus, agi) {        
+    getBracketAndCalculateBaseTax(filingStatus, agi) {        
         // Get the bracket type
         var typedBrackets = {};
         if(filingStatus == "single") {
@@ -75,6 +75,38 @@ class TaxTable {
         return tax;
     }
     
+    getBracket(filingStatus, agi) {
+        var typedBrackets = {};
+        if(filingStatus == "single") {
+            typedBrackets = this.singleBrackets;
+        }
+        if(filingStatus == "marriedJoint") {
+            typedBrackets = this.marriedJointBrackets;
+        }
+        if(filingStatus == "marriedSeparate") {
+            typedBrackets = this.marriedSeparateBrackets;
+        }
+        if(filingStatus == "hoh") {
+            typedBrackets = this.hohBrackets;
+        }
+        
+        // Get the bracket 
+        var bracket = {};  
+        var nextBracket = {};     
+        if(agi !== 0) {
+            for (var i = 0; i < typedBrackets.length; i++) {        
+                if((agi < typedBrackets[i].top || typedBrackets[i].top == 0) && agi > typedBrackets[i].bottom) {
+                    bracket = typedBrackets[i];
+                    if(i + 1 >= typedBrackets.length) {
+                        nextBracket = typedBrackets[i + 1];
+                    }
+                }
+            }
+        }
+        
+        return [bracket, nextBracket];
+    }
+    
     calculateOtherTax(agi) {
         // FICA
         var otherTax = this.otherTax.calculateOtherTax(agi);        
@@ -82,4 +114,4 @@ class TaxTable {
     }
 }
 
-export default TaxTable;
+export default FedTaxTable;

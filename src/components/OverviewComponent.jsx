@@ -1,51 +1,23 @@
 var React = require('react');
 var Utils = require('../utils');
 
-var TaxTable = require('../common/TaxTable');
+var FedTaxTable = require('../common/FedTaxTable');
+var FedTaxScenario = require('../common/FedTaxScenario');
 var TaxData = require('json!../data/2015-Fed.json');
 
 var OverviewComponent = React.createClass({
     calculateTaxes: function() {
-        // Get taxableIncome
-        this.taxableIncome = this.props.state.agi;
-        this.exemptions = 0;
-        this.deductions = 0;
-        // Exemptions
-        if(this.props.state.personalExemp) {
-            this.exemptions += TaxData.exemptions.amount;
-        }
-        if(this.props.state.spouseExemp) {
-            this.exemptions += TaxData.exemptions.amount;
-        }
-        // Dependents
-        if(this.props.state.dependents > 0) {
-            this.exemptions += TaxData.exemptions.amount * this.props.state.dependents;
-        }
-        this.taxableIncome = this.taxableIncome - this.exemptions;
-        // Deductions
-        if(this.props.state.standardDeduction) {
-            this.deductions = TaxData.deductions[this.props.state.currentFilingStatus];
-            this.taxableIncome = this.taxableIncome - this.deductions;
-        }
-        // Make sure taxable income is never negative
-        if(this.taxableIncome < 0) {
-            this.taxableIncome = 0;
-        }
+        // Build scenario data
+        var scenarioData = {
+            agi : this.props.state.agi,
+            personalExemp : this.props.state.personalExemp,
+            spouseExemp : this.props.state.spouseExemp,
+            dependents : this.props.state.dependents,
+            deduction : this.props.state.standardDeduction ? true : 0,
+            filingStatus : this.props.state.currentFilingStatus
+        };
         
-        var table = new TaxTable.default(TaxData);
-        this.federalTax = table.determineBracketAndCalculateTax(this.props.state.currentFilingStatus, this.taxableIncome);
-        this.otherTax = table.calculateOtherTax(this.taxableIncome);
-        this.totaltax = this.federalTax + this.otherTax;
-        this.percent = 0;
-        this.takeHomePay = this.props.state.agi;
-        
-        if(this.totaltax > 0) {
-            // Percent
-            this.percent = (this.totaltax / this.taxableIncome) * 100;
-                        
-            // Take home pay
-            this.takeHomePay = this.taxableIncome - this.totaltax;
-        }
+        this.scenario = new FedTaxScenario.default(TaxData, scenarioData);
     },
     render: function render() {
         this.calculateTaxes();
@@ -53,54 +25,60 @@ var OverviewComponent = React.createClass({
         return (
             <div className="row">
                 <div className="col-md-12">
-                    <table className="table table-striped">
+                    <table className="table table-striped data-table">
                         <tbody>
                             <tr>
-                                <td>Exemptions:</td>
+                                <td>Adjusted Gross Income:</td>
                                 <td>
-                                    <p className="text-right nopad">- {Utils.cleanAndFormatMoney(this.exemptions)}</p>
+                                    <p className="text-right nopad">- {Utils.cleanAndFormatMoney(this.scenario.agi)}</p>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Deductions:</td>
+                                <td className="indent-1">Exemptions:</td>
                                 <td>
-                                    <p className="text-right nopad">- {Utils.cleanAndFormatMoney(this.deductions)}</p>
+                                    <p className="text-right nopad">- {Utils.cleanAndFormatMoney(this.scenario.exemptions)}</p>
                                 </td>
                             </tr>
                             <tr>
-                                <td><strong>Taxable Income</strong></td>
+                                <td className="indent-1">Deductions:</td>
                                 <td>
-                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.taxableIncome)}</p>
+                                    <p className="text-right nopad">- {Utils.cleanAndFormatMoney(this.scenario.deductions)}</p>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Federal Income Tax:</td>
+                                <td><strong>Taxable Income:</strong></td>
                                 <td>
-                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.federalTax)}</p>
+                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.scenario.taxableIncome)}</p>
                                 </td>
                             </tr>
                             <tr>
-                                <td>FICA:</td>
+                                <td className="indent-1">Federal Income Tax:</td>
                                 <td>
-                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.otherTax)}</p>
+                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.scenario.incomeTax)}</p>
                                 </td>
                             </tr>
                             <tr>
-                                <td><strong>Total:</strong></td>
+                                <td className="indent-1">FICA:</td>
                                 <td>
-                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.totalTax)}</p>
+                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.scenario.otherTax)}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total Tax:</strong></td>
+                                <td>
+                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.scenario.totalTax)}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Percentage of your income:</td>
                                 <td>
-                                    <p className="text-right nopad">{Utils.twoDigitRound(this.percent)} %</p>
+                                    <p className="text-right nopad">{Utils.twoDigitRound(this.scenario.percent)} %</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Take home pay:</td>
                                 <td>
-                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.takeHomePay)}</p>
+                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.scenario.takeHomePay)}</p>
                                 </td>
                             </tr>
                         </tbody>

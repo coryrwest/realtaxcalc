@@ -13,3 +13,21 @@ a {
 p.nopad {
     padding: none;
 }
+
+table.data-table {
+    tbody {
+        tr {
+            td {
+                line-height: 1;
+            }
+               
+            $indents: 4;
+
+            @for $i from 1 through $indents {
+                td.indent-#{$i} {
+                    padding-left: 5% * $i;
+                }
+            }
+        }
+    }
+}

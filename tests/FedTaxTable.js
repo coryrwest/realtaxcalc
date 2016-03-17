@@ -1,5 +1,5 @@
 var assert = require('chai').assert;
-import TaxTable from "../src/common/TaxTable";
+import FedTaxTable from "../src/common/FedTaxTable";
 
 var table = {
     "single": [
@@ -57,7 +57,7 @@ var table = {
 
 
 describe('The tax table', function () {
-    var taxTable = new TaxTable(table);
+    var taxTable = new FedTaxTable(table);
 
     it('should build the correct table', function () {
         assert.equal(taxTable.singleBrackets.length, 7,
@@ -66,7 +66,7 @@ describe('The tax table', function () {
 });
 
 describe('The tax table', function () {
-    var taxTable = new TaxTable(table);
+    var taxTable = new FedTaxTable(table);
 
     it('should contain medicare tax info', function () {
         assert.isDefined(taxTable.otherTax.medicare, 'The table does not defined medicare tax');
@@ -74,7 +74,7 @@ describe('The tax table', function () {
 });
 
 describe('The tax table', function () {
-    var taxTable = new TaxTable(table);
+    var taxTable = new FedTaxTable(table);
 
     it('should contain social security tax info', function () {
         assert.isDefined(taxTable.otherTax.ssTop, 'The table does not defined social security tax');
