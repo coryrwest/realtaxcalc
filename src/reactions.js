@@ -24,6 +24,13 @@ State.on('setting:set', function(name, value){
     console.log('Setting ' + name + ' ' + value + ' Saved');
 });
 
+
+State.on('reset', function(){
+    // Save the state in localStorage
+    Utils.resetStore(Globals.storeName);
+    console.log('State reset');
+});
+
 /**
  * Deletes a todo.
  * @param  { FreezerNode } The todo to delete.

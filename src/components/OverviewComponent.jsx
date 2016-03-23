@@ -1,7 +1,6 @@
 var React = require('react');
 var Utils = require('../utils');
 
-var FedTaxTable = require('../common/FedTaxTable');
 var FedTaxScenario = require('../common/FedTaxScenario');
 var TaxData = require('json!../data/2015-Fed.json');
 
@@ -25,6 +24,7 @@ var OverviewComponent = React.createClass({
         return (
             <div className="row">
                 <div className="col-md-12">
+                    <h3>Tax Breakdown:</h3>
                     <table className="table table-striped data-table">
                         <tbody>
                             <tr>

@@ -9,6 +9,9 @@ module.exports = {
 			var store = localStorage.getItem(namespace);
 			return (store && JSON.parse(store)) || false;
 		},
+        resetStore: function (namespace) {
+			var store = localStorage.setItem(namespace, null);
+		},
         cleanAndFormatMoney: function(numeric) {
             var cleaned = Math.round(numeric * 100) / 100;
             return accting.formatMoney(cleaned, "$", 2, ",", ".");

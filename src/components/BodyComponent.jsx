@@ -2,6 +2,7 @@ var React = require('react');
 var GlobalSettings = require('./Settings/GlobalSettingsComponent.jsx');
 var ScenarioSettings = require('./Settings/ScenarioSettingsComponent.jsx');
 var Overview = require('./OverviewComponent.jsx');
+var Bracket = require('./BracketDisplayComponent.jsx');
 var State = require('../state');
 
 require('../reactions');
@@ -41,6 +42,9 @@ var BodyComponent = React.createClass({
                         </div>
                         <div className="col-md-12">
                             <Overview state={state} />
+                        </div>
+                        <div className="col-md-12">
+                            <Bracket state={state} />
                         </div>
                     </div>
                 </div>

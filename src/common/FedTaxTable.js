@@ -91,20 +91,16 @@ class FedTaxTable {
         }
         
         // Get the bracket 
-        var bracket = {};  
-        var nextBracket = {};     
+        var bracketIndex = 0; 
         if(agi !== 0) {
             for (var i = 0; i < typedBrackets.length; i++) {        
                 if((agi < typedBrackets[i].top || typedBrackets[i].top == 0) && agi > typedBrackets[i].bottom) {
-                    bracket = typedBrackets[i];
-                    if(i + 1 >= typedBrackets.length) {
-                        nextBracket = typedBrackets[i + 1];
-                    }
+                    bracketIndex = i;
                 }
             }
         }
         
-        return [bracket, nextBracket];
+        return [bracketIndex, typedBrackets];
     }
     
     calculateOtherTax(agi) {
