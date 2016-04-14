@@ -26,8 +26,10 @@ State.on('setting:set', function(name, value){
 
 
 State.on('reset', function(){
+    // Reset the store
+    State.get().set(Globals.defaultState);
     // Save the state in localStorage
-    Utils.resetStore(Globals.storeName);
+    Utils.store(Globals.storeName, State.get());
     console.log('State reset');
 });
 
@@ -84,17 +86,6 @@ State.on('todo:update', function( todo, text ){
 });
 
 /**
- * Set a filter for the todos.
- * @param  {String} The filter to apply. It can be 'all'|'completed'|'active'.
- */
-State.on('todo:filter', function( filter ){
-	State.get().set({ filter: filter });
-
-	// Save the state in localStorage
-	Utils.store('freezerTodos', State.get());
-});
-
-/**
  * Removes completed nodes from the list.
  */
 State.on('todo:clearCompleted', function(){
@@ -125,38 +116,3 @@ State.on('todo:clearCompleted', function(){
 		Utils.store('freezerTodos', State.get());
 	}, lag);
 });
-
-/**
- * Marks a todo as complete or active.
- * @param {FreezerNode} The todo to toggle.
- */
-State.on('todo:toggle', function( todo ){
-	todo.model.set({ completed: !todo.model.completed });
-
-	// Save the state in localStorage
-	Utils.store('freezerTodos', State.get());
-});
-
-
-/**
- * HELPER function. Find a todo in the state and return
- * its index in the array.
- * @param  {FreezerNode} todo The todo to find.
- * @return {Number|Boolean}   The index or false if not found.
- */
-var getTodoIndex = function( todo ){
-	var i = 0,
-		found = false,
-		todos = State.get().todos
-	;
-
-	while( i<todos.length && found === false ){
-		// Since todos are immutable, we can use
-		// direct comparison here instead of using uuid.
-		if( todos[i] === todo )
-			found = i;
-		i++;
-	}
-
-	return found;
-};

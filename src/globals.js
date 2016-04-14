@@ -1,6 +1,6 @@
 module.exports = {
     storeName: 'realTaxCalc:taxSettings',
-    scenariostoreName: 'realTaxCalc:scenarioSettings',
+    scenarioStoreName: 'realTaxCalc:scenarioSettings',
     filingStatuses: [
         {
             value : "single",
@@ -24,4 +24,14 @@ module.exports = {
         //     label : "Qualifying Widow(er)"
         // }
     ],
+    defaultState: {
+        displayState: false,
+        state: 'CA',
+        agi: 0,
+        currentFilingStatus: "single",
+        personalExemp: true,
+        spouseExemp: false,
+        dependents: 0,
+        standardDeduction: true
+    }
 };

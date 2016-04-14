@@ -1,5 +1,5 @@
 var assert = require('chai').assert;
-import FedTaxScenario from "../src/common/FedTaxScenario";
+import StateTaxScenario from "../src/common/StateTaxScenario";
 
 import Data from "../src/data/2015-Fed.json";
 
@@ -15,7 +15,7 @@ describe('The tax scenario (85000)', function () {
         filingStatus : 'marriedJoint'
     };
     
-    var taxScenario = new FedTaxScenario(table, scenarioData);
+    var taxScenario = new StateTaxScenario(table, scenarioData);
 
     it('should build the correct scenario (agi)', function () {
         assert.equal(taxScenario.agi, 85000,
@@ -48,7 +48,7 @@ describe('The tax scenario (350000)', function () {
         filingStatus : 'marriedJoint'
     };
     
-    var taxScenario = new FedTaxScenario(table, scenarioData);
+    var taxScenario = new StateTaxScenario(table, scenarioData);
 
     it('should build the correct scenario (exemptions with phaseout)', function () {
         assert.equal(taxScenario.agi, 350000,

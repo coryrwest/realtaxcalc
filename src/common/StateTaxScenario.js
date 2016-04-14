@@ -1,4 +1,4 @@
-import FedTaxTable from "./FedTaxTable"
+import StateTaxTable from "./StateTaxTable"
 
 // returns:
 //      taxTable
@@ -11,7 +11,7 @@ import FedTaxTable from "./FedTaxTable"
 //      totalTax
 //      percent
 //      takeHomePay
-class FedTaxScenario {
+class StateTaxScenario {
     // scenarioData
     //  agi
     //  personalExemp
@@ -110,4 +110,4 @@ class FedTaxScenario {
     }
 }
 
-export default FedTaxScenario;
+export default StateTaxScenario;

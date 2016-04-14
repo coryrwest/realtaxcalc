@@ -1,0 +1,259 @@
+{
+    "single": [
+        {
+            "bottom": 0,
+            "top": 7850,
+            "rate": 0.01,
+            "flatTax": 0
+        }, 
+        {
+            "bottom": 7851,
+            "top": 18610,
+            "rate": 0.02,
+            "flatTax": 78.50
+        },
+        {
+            "bottom": 18611,
+            "top": 29372,
+            "rate": 0.04,
+            "flatTax": 293.70
+        },
+        {
+            "bottom": 29373,
+            "top": 40773,
+            "rate": 0.06,
+            "flatTax": 724.18
+        },
+        {
+            "bottom": 40774,
+            "top": 51530,
+            "rate": 0.08,
+            "flatTax": 1408.24
+        },
+        {
+            "bottom": 51531,
+            "top": 263222,
+            "rate": 0.093,
+            "flatTax": 2268.80
+        },
+        {
+            "bottom": 263223,
+            "top": 315866,
+            "rate": 0.103,
+            "flatTax": 21956.16
+        },
+        {
+            "bottom": 315867,
+            "top": 526443,
+            "rate": 0.113,
+            "flatTax": 27378.49
+        },
+        {
+            "bottom": 526444,
+            "top": 0,
+            "rate": 0.123,
+            "flatTax": 51173.69
+        }
+    ],
+    "marriedJoint": [
+        {
+            "bottom": 0,
+            "top": 15700,
+            "rate": 0.01,
+            "flatTax": 0
+        }, 
+        {
+            "bottom": 15701,
+            "top": 37220,
+            "rate": 0.02,
+            "flatTax": 157
+        },
+        {
+            "bottom": 37221,
+            "top": 58744,
+            "rate": 0.04,
+            "flatTax": 587.40
+        },
+        {
+            "bottom": 58745,
+            "top": 81546,
+            "rate": 0.06,
+            "flatTax": 1448.36
+        },
+        {
+            "bottom": 81547,
+            "top": 103060,
+            "rate": 0.08,
+            "flatTax": 2816.48
+        },
+        {
+            "bottom": 103061,
+            "top": 526444,
+            "rate": 0.093,
+            "flatTax": 4537.60
+        },
+        {
+            "bottom": 526445,
+            "top": 631732,
+            "rate": 0.103,
+            "flatTax": 43912.31
+        },
+        {
+            "bottom": 631733,
+            "top": 1053886,
+            "rate": 0.113,
+            "flatTax": 54756.97
+        },
+        {
+            "bottom": 1053887,
+            "top": 0,
+            "rate": 0.123,
+            "flatTax": 102347.37
+        }
+    ],
+    "marriedSeparate": [
+        {
+            "bottom": 0,
+            "top": 7850,
+            "rate": 0.01,
+            "flatTax": 0
+        }, 
+        {
+            "bottom": 7851,
+            "top": 18610,
+            "rate": 0.02,
+            "flatTax": 78.50
+        },
+        {
+            "bottom": 18611,
+            "top": 29372,
+            "rate": 0.04,
+            "flatTax": 293.70
+        },
+        {
+            "bottom": 29373,
+            "top": 40773,
+            "rate": 0.06,
+            "flatTax": 724.18
+        },
+        {
+            "bottom": 40774,
+            "top": 51530,
+            "rate": 0.08,
+            "flatTax": 1408.24
+        },
+        {
+            "bottom": 51531,
+            "top": 263222,
+            "rate": 0.093,
+            "flatTax": 2268.80
+        },
+        {
+            "bottom": 263223,
+            "top": 315866,
+            "rate": 0.103,
+            "flatTax": 21956.16
+        },
+        {
+            "bottom": 315867,
+            "top": 526443,
+            "rate": 0.113,
+            "flatTax": 27378.49
+        },
+        {
+            "bottom": 526444,
+            "top": 0,
+            "rate": 0.123,
+            "flatTax": 51173.69
+        }
+    ],
+    "hoh": [
+        {
+            "bottom": 0,
+            "top": 15710,
+            "rate": 0.01,
+            "flatTax": 0
+        }, 
+        {
+            "bottom": 15711,
+            "top": 37221,
+            "rate": 0.02,
+            "flatTax": 157.10
+        },
+        {
+            "bottom": 37222,
+            "top": 47982,
+            "rate": 0.04,
+            "flatTax": 587.32
+        },
+        {
+            "bottom": 47983,
+            "top": 59383,
+            "rate": 0.06,
+            "flatTax": 1017.76
+        },
+        {
+            "bottom": 59384,
+            "top": 70142,
+            "rate": 0.08,
+            "flatTax": 1701.82
+        },
+        {
+            "bottom": 70143,
+            "top": 357981,
+            "rate": 0.093,
+            "flatTax": 2562.54
+        },
+        {
+            "bottom": 357982,
+            "top": 429578,
+            "rate": 0.103,
+            "flatTax": 29331.57
+        },
+        {
+            "bottom": 429579,
+            "top": 715962,
+            "rate": 0.113,
+            "flatTax": 36706.06
+        },
+        {
+            "bottom": 715963,
+            "top": 0,
+            "rate": 0.123,
+            "flatTax": 69067.45
+        }
+    ],
+    "other": {
+        "mentalHealthServices" : {
+            "bottom": 1000000,
+            "rate": 0.01
+        }
+    },
+    "exemptions": {
+        "single" : {
+            "amount": 178706,
+            "phaseOut": 258250
+        },
+        "marriedJoint": {
+            "amount": 357417,
+            "phaseOut": 309900
+        },
+        "marriedSeparate": {
+            "amount": 178706,
+            "phaseOut": 157950
+        },
+        "hoh": {
+            "amount": 268063,
+            "phaseOut": 284050
+        },
+        "dependents": {
+            "amount": 1050
+        }
+    },
+    "deductions": {
+        "single": 4044,
+        "marriedJoint": 8088,
+        "marriedSeparate": 4044,
+        "hoh": 8088
+    }
+}

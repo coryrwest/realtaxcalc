@@ -30,55 +30,55 @@ var OverviewComponent = React.createClass({
                             <tr>
                                 <td>Adjusted Gross Income:</td>
                                 <td>
-                                    <p className="text-right nopad">- {Utils.cleanAndFormatMoney(this.scenario.agi)}</p>
+                                    <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.scenario.agi)}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td className="indent-1">Exemptions:</td>
                                 <td>
-                                    <p className="text-right nopad">- {Utils.cleanAndFormatMoney(this.scenario.exemptions)}</p>
+                                    <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.scenario.exemptions)}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td className="indent-1">Deductions:</td>
                                 <td>
-                                    <p className="text-right nopad">- {Utils.cleanAndFormatMoney(this.scenario.deductions)}</p>
+                                    <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.scenario.deductions)}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td><strong>Taxable Income:</strong></td>
                                 <td>
-                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.scenario.taxableIncome)}</p>
+                                    <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.scenario.taxableIncome)}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td className="indent-1">Federal Income Tax:</td>
                                 <td>
-                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.scenario.incomeTax)}</p>
+                                    <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.scenario.incomeTax)}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td className="indent-1">FICA:</td>
                                 <td>
-                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.scenario.otherTax)}</p>
+                                    <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.scenario.otherTax)}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td><strong>Total Tax:</strong></td>
                                 <td>
-                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.scenario.totalTax)}</p>
+                                    <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.scenario.totalTax)}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Percentage of your income:</td>
                                 <td>
-                                    <p className="text-right nopad">{Utils.twoDigitRound(this.scenario.percent)} %</p>
+                                    <p className="text-right nopad nomar">{Utils.twoDigitRound(this.scenario.percent)} %</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Take home pay:</td>
                                 <td>
-                                    <p className="text-right nopad">{Utils.cleanAndFormatMoney(this.scenario.takeHomePay)}</p>
+                                    <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.scenario.takeHomePay)}</p>
                                 </td>
                             </tr>
                         </tbody>

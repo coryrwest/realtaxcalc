@@ -1,12 +1,12 @@
 var assert = require('chai').assert;
-import FedTaxBracket from "../src/common/FedTaxBracket";
+import TaxBracket from "../src/common/TaxBracket";
 
 
 var bracket = '10%';
 describe('The '+bracket+' tax bracket', function(){
   var income = 5463;
   
-  var bracket = new FedTaxBracket(0, 9225, 0.10, 0);
+  var bracket = new TaxBracket(0, 9225, 0.10, 0);
   
   var tax = bracket.calculateBracketTax(income);
   
@@ -20,7 +20,7 @@ bracket = '15%';
 describe('The '+bracket+' tax bracket', function(){
   var income = 10000;
   
-  var bracket = new FedTaxBracket(9226, 37450, 0.15, 922.50);
+  var bracket = new TaxBracket(9226, 37450, 0.15, 922.50);
   
   var tax = bracket.calculateBracketTax(income);
   
@@ -34,7 +34,7 @@ bracket = '25%';
 describe('The '+bracket+' tax bracket', function(){
   var income = 45600;
   
-  var bracket = new FedTaxBracket(37451, 90750, 0.25, 5156.25);
+  var bracket = new TaxBracket(37451, 90750, 0.25, 5156.25);
   
   var tax = bracket.calculateBracketTax(income);
   
@@ -48,7 +48,7 @@ bracket = '28%';
 describe('The '+bracket+' tax bracket', function(){
   var income = 150900;
   
-  var bracket = new FedTaxBracket(90751, 189300, 0.28, 18481.25);
+  var bracket = new TaxBracket(90751, 189300, 0.28, 18481.25);
   
   var tax = bracket.calculateBracketTax(income);
   
@@ -62,7 +62,7 @@ bracket = '33%';
 describe('The '+bracket+' tax bracket', function(){
   var income = 280900;
   
-  var bracket = new FedTaxBracket(189301, 411500, 0.33, 46075.25);
+  var bracket = new TaxBracket(189301, 411500, 0.33, 46075.25);
   
   var tax = bracket.calculateBracketTax(income);
   
@@ -76,7 +76,7 @@ bracket = '35%';
 describe('The '+bracket+' tax bracket', function(){
   var income = 412000;
   
-  var bracket = new FedTaxBracket(411501, 413200, 0.35, 119401.25);
+  var bracket = new TaxBracket(411501, 413200, 0.35, 119401.25);
   
   var tax = bracket.calculateBracketTax(income);
   
@@ -90,7 +90,7 @@ bracket = '39.6%';
 describe('The '+bracket+' tax bracket', function(){
   var income = 900000;
   
-  var bracket = new FedTaxBracket(413201, 0, 0.396, 119996.25);
+  var bracket = new TaxBracket(413201, 0, 0.396, 119996.25);
   
   var tax = bracket.calculateBracketTax(income);
   

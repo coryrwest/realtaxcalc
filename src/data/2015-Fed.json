@@ -183,13 +183,25 @@
         }
     },
     "exemptions": {
-        "amount" : 4000,
-        "phaseOuts": [
-            {"single": 258250},
-            {"marriedJoint": 309900},
-            {"marriedSeparate": 157950},
-            {"hoh": 284050}
-        ]
+        "single" : {
+            "amount": 4000,
+            "phaseOut": 258250
+        },
+        "marriedJoint": {
+            "amount": 4000,
+            "phaseOut": 309900
+        },
+        "marriedSeparate": {
+            "amount": 4000,
+            "phaseOut": 157950
+        },
+        "hoh": {
+            "amount": 4000,
+            "phaseOut": 284050
+        },
+        "dependents": {
+            "amount": 4000
+        }
     },
     "deductions": {
         "single": 6300,

@@ -1,16 +1,13 @@
 var accting = require('accounting');
 
 module.exports = {
-		store: function (namespace, data) {
+		store: function (name, data) {
 			if (data) {
-				return localStorage.setItem(namespace, JSON.stringify(data));
+				return localStorage.setItem(name, JSON.stringify(data));
 			}
 
-			var store = localStorage.getItem(namespace);
+			var store = localStorage.getItem(name);
 			return (store && JSON.parse(store)) || false;
-		},
-        resetStore: function (namespace) {
-			var store = localStorage.setItem(namespace, null);
 		},
         cleanAndFormatMoney: function(numeric) {
             var cleaned = Math.round(numeric * 100) / 100;

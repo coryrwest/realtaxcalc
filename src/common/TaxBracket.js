@@ -1,4 +1,4 @@
-class FedTaxBracket {
+class TaxBracket {
     constructor(bottom, top, rate, flatTax) {
         this.bottom = bottom;
         this.top = top;
@@ -36,4 +36,4 @@ class FedTaxBracket {
     }
 }
 
-export default FedTaxBracket;
+export default TaxBracket;

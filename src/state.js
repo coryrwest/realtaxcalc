@@ -3,17 +3,7 @@ var Freezer = require('freezer-js'),
     Globals = require('./globals');
 
 // Try to recover the state from the localStorage
-var globalState = Utils.store(Globals.storeName) || 
-{
-    displayState: false,
-    state: 'CA',
-    agi: 0,
-    currentFilingStatus: "single",
-    personalExemp: true,
-    spouseExemp: false,
-    dependents: 0,
-    standardDeduction: true
-};
+var globalState = Utils.store(Globals.storeName) || Globals.defaultState;
 
 // var scenarioState = Utils.store(Globals.scenarioStoreName) ||
 // {

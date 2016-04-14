@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 import FedOthertax from "../src/common/FedOthertax";
 
-describe('The other tax object', function(){
+describe('The fed other tax object', function(){
     var income = 219800;
       
     var otherTax = new FedOthertax(0.0145, 118500, 0.062);
