@@ -28,7 +28,7 @@ var BodyComponent = React.createClass({
                 <p className="bs-callout bs-callout-info">This tax calulator was built to give you a complete image of your tax burden. 
                     Including FICA and other state or local taxes that you will have to pay. 
                     Most other online calculators do not give you the full picture when you are trying to calculate your tax. 
-                    This one does.</p>
+                    This tries to.</p>
                 </div>
                 <div className="col-md-6">
                     <GlobalSettings state={state} />

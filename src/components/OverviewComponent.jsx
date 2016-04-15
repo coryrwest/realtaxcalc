@@ -1,5 +1,7 @@
 var React = require('react');
 var Utils = require('../utils');
+var Popover = require('react-bootstrap').Popover;
+var OverlayTrigger = require('react-bootstrap').OverlayTrigger;
 
 var FedTaxScenario = require('../common/FedTaxScenario');
 var TaxData = require('json!../data/2015-Fed.json');
@@ -20,6 +22,10 @@ var OverviewComponent = React.createClass({
     },
     render: function render() {
         this.calculateTaxes();
+        
+        this.monthly = Utils.cleanAndFormatMoney(this.scenario.takeHomePay / 12);
+        this.biweekly = Utils.cleanAndFormatMoney(this.scenario.takeHomePay / 26);
+        this.weekly = Utils.cleanAndFormatMoney(this.scenario.takeHomePay / 52);
         
         return (
             <div className="row">
@@ -78,7 +84,10 @@ var OverviewComponent = React.createClass({
                             <tr>
                                 <td>Take home pay:</td>
                                 <td>
-                                    <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.scenario.takeHomePay)}</p>
+                                    <p className="text-right nopad nomar">
+                                        <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover title="Pay Breakdown">Monthly: {this.monthly} <br/> Bi-Weekly: {this.biweekly} <br/> Weekly: {this.weekly} </Popover>}><i className="glyphicon glyphicon-info-sign"></i></OverlayTrigger>
+                                        <span className="left-icon">{Utils.cleanAndFormatMoney(this.scenario.takeHomePay)}</span>
+                                    </p>
                                 </td>
                             </tr>
                         </tbody>
