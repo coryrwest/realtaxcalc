@@ -1,4 +1,4 @@
-import StateTaxTable from "./StateTaxTable"
+import StateTaxTable from "./TaxTable"
 
 // returns:
 //      taxTable
@@ -32,7 +32,7 @@ class StateTaxScenario {
         this.percent = 0;
         this.takeHomePay = 0;
         
-        this.taxTable = new FedTaxTable(tableJson);
+        this.taxTable = new StateTaxTable(tableJson);
         
         if (tableJson && scenarioData) {
             // -- Calculate taxableIncome
@@ -73,20 +73,20 @@ class StateTaxScenario {
     calculateExemptions(tableJson, agi, filingStatus, personal, spouse, dependents) {
         var exemptions = 0;
         if(tableJson && tableJson.exemptions) {
-            // phaseouts
-            // TODO: If income is above phaseout reduce by 2% for every $2500 ($1250 marriedSeparate) above.
-            // If your AGI exceeds the amount shown above by more than $122,500 ($61,250 if married filing separately), the 
-            // amount of your deduction for exemptions is reduced to zero.
-            var exemptionReduction = 0;
             var exemption = tableJson.exemptions[filingStatus] || 0;            
+            // Get exemption amount
+            exemptions = exemption.amount;
             
-            // Calculate Exemptions
-            if(personal) {
-                exemptions += exemption.amount;
+            // Calculate phaseouts
+            if(agi > exemption.phaseOut) {
+                // Calculate number of steps
+                var overage = agi - exemption.phaseOut;
+                var steps = overage / exemption.amountStep;
+                var exemptionReduction = exemption.reduction * steps;
+                var finalAmount = exemption.amount - exemptionReduction;
+                exemptions = finalAmount;
             }
-            if(spouse) {
-                exemptions += exemption.amount;
-            }
+            
             // Dependents
             if(dependents > 0) {
                 exemptions += tableJson.exemptions.dependents.amount * dependents;

@@ -1,4 +1,4 @@
-import FedTaxTable from "./FedTaxTable"
+import FedTaxTable from "./TaxTable"
 
 // returns:
 //      taxTable

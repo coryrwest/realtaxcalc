@@ -231,29 +231,38 @@
     },
     "exemptions": {
         "single" : {
-            "amount": 178706,
-            "phaseOut": 258250
+            "amount": 109,
+            "phaseOut": 178706,
+            "reduction": 6,
+            "amountStep": 2500
         },
         "marriedJoint": {
-            "amount": 357417,
-            "phaseOut": 309900
+            "amount": 218,
+            "phaseOut": 357417,
+            "reduction": 12,
+            "amountStep": 2500
         },
         "marriedSeparate": {
-            "amount": 178706,
-            "phaseOut": 157950
+            "amount": 109,
+            "phaseOut": 178706,
+            "reduction": 6,
+            "amountStep": 1250
         },
         "hoh": {
-            "amount": 268063,
-            "phaseOut": 284050
+            "amount": 109,
+            "phaseOut": 268063,
+            "reduction": 6,
+            "amountStep": 2500
         },
         "dependents": {
-            "amount": 1050
+            "amount": 337
         }
     },
     "deductions": {
         "single": 4044,
         "marriedJoint": 8088,
         "marriedSeparate": 4044,
-        "hoh": 8088
+        "hoh": 8088,
+        "dependents": 1050
     }
 }

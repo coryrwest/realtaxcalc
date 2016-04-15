@@ -18,8 +18,8 @@ var BracketDisplayComponent = React.createClass({
         
         this.scenario = new FedTaxScenario.default(TaxData, scenarioData);
                
-        var taxTable = this.scenario.fedTaxTable;
-        var brackets = taxTable.getBracket(this.props.state.currentFilingStatus, this.scenario.taxableIncome);
+        var taxTable = this.scenario.taxTable;
+        var brackets = taxTable.incomeTax.getBracket(this.props.state.currentFilingStatus, this.scenario.taxableIncome);
         this.bracketIndex = brackets[0];
         this.brackets = brackets[1];
     },

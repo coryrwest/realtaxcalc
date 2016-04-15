@@ -176,7 +176,10 @@
         }
     ],
     "other": {
-        "medicare" : 0.0145,
+        "medicare" : {
+            "bottom": 0,
+            "rate": 0.0145
+        },
         "socialSecurity" : {
             "top": 118500,
             "rate": 0.062

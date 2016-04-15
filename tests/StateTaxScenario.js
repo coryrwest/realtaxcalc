@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 import StateTaxScenario from "../src/common/StateTaxScenario";
 
-import Data from "../src/data/2015-Fed.json";
+import Data from "../src/data/2015-CA.json";
 
 var table = Data;
 
@@ -16,24 +16,29 @@ describe('The tax scenario (85000)', function () {
     };
     
     var taxScenario = new StateTaxScenario(table, scenarioData);
-
+    
     it('should build the correct scenario (agi)', function () {
         assert.equal(taxScenario.agi, 85000,
+            'The table does not have the correct agi: ' + taxScenario.agi);
+    });
+    
+    it('should build the correct scenario (taxableIncome)', function () {
+        assert.equal(taxScenario.taxableIncome, 76357,
             'The table does not have the correct agi: ' + taxScenario.taxableIncome);
     });
     
     it('should build the correct scenario (exemptions)', function () {
-        assert.equal(taxScenario.exemptions, 12000,
+        assert.equal(taxScenario.exemptions, 555,
             'The table does not have the correct exemption amount: ' + taxScenario.exemptions);
     });
     
     it('should build the correct scenario (standard deductions marriedJoint)', function () {
-        assert.equal(taxScenario.deductions, 12600,
+        assert.equal(taxScenario.deductions, 8088,
             'The table does not have the correct deductions amount: ' + taxScenario.deductions);
     });
     
     it('should build the correct scenario (taxableIncome)', function () {
-        assert.equal(taxScenario.taxableIncome, 60400,
+        assert.equal(taxScenario.taxableIncome, 76357,
             'The table does not have the correct exemption amount: ' + taxScenario.taxableIncome);
     });
 });

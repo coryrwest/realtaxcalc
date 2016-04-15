@@ -1,4 +1,4 @@
-class StateOtherTax {
+class OtherTax {
     constructor(top, bottom, rate) {
         this.top = top;
         this.bottom = bottom;
@@ -8,12 +8,14 @@ class StateOtherTax {
     calculateOtherTax(income) {
         var totalTax = 0;
         // Are we using a cut-off or a floor?
-        if(this.top && this.top > 0) {
+        if(this.top !== undefined && this.top !== null && this.top > 0) {
             // cut-off
-            if(income < this.top) {
+            if(income > this.top) {
+                totalTax = this.top * this.rate;
+            } else {
                 totalTax = income * this.rate;
             }
-        } else if(this.bottom && this.bottom > 0) {
+        } else if(this.bottom !== undefined && this.bottom !== null && this.bottom >= 0) {
             // floor
             if(income > this.bottom) {
                 totalTax = (income - this.bottom) * this.rate;
@@ -24,4 +26,4 @@ class StateOtherTax {
     }
 }
 
-export default StateOtherTax;
+export default OtherTax;
