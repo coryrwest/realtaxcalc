@@ -223,10 +223,15 @@
             "flatTax": 69067.45
         }
     ],
+    "otherTaxExplanation": "This includes a .09% tax for mandatory state disibility insurance, and the millionaires tax for mental health services.",
     "other": {
         "mentalHealthServices" : {
             "bottom": 1000000,
             "rate": 0.01
+        },
+        "stateDisabilityInsurance": {
+            "top": 106742,
+            "rate": 0.009
         }
     },
     "exemptions": {
@@ -237,9 +242,9 @@
             "amountStep": 2500
         },
         "marriedJoint": {
-            "amount": 218,
+            "amount": 109,
             "phaseOut": 357417,
-            "reduction": 12,
+            "reduction": 6,
             "amountStep": 2500
         },
         "marriedSeparate": {

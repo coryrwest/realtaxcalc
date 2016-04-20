@@ -1,4 +1,4 @@
-import FedTaxTable from "./TaxTable"
+import TaxTable from "./TaxTable"
 
 // returns:
 //      taxTable
@@ -11,7 +11,7 @@ import FedTaxTable from "./TaxTable"
 //      totalTax
 //      percent
 //      takeHomePay
-class FedTaxScenario {
+class TaxScenario {
     // scenarioData
     //  agi
     //  personalExemp
@@ -32,7 +32,7 @@ class FedTaxScenario {
         this.percent = 0;
         this.takeHomePay = 0;
         
-        this.taxTable = new FedTaxTable(tableJson);
+        this.taxTable = new TaxTable(tableJson);
         
         if (tableJson && scenarioData) {
             // -- Calculate taxableIncome
@@ -72,20 +72,24 @@ class FedTaxScenario {
     
     calculateExemptions(tableJson, agi, filingStatus, personal, spouse, dependents) {
         var exemptions = 0;
-        if(tableJson && tableJson.exemptions) {
-            // phaseouts
-            // TODO: If income is above phaseout reduce by 2% for every $2500 ($1250 marriedSeparate) above.
-            // If your AGI exceeds the amount shown above by more than $122,500 ($61,250 if married filing separately), the 
-            // amount of your deduction for exemptions is reduced to zero.
-            var exemptionReduction = 0;
-            var exemption = tableJson.exemptions[filingStatus] || 0;            
-            
-            // Calculate Exemptions
-            if(personal) {
+        if(tableJson && tableJson.exemptions && tableJson.exemptions[filingStatus]) {
+            var exemption = tableJson.exemptions[filingStatus];
+            // Get exemption amount
+            if (personal) {
                 exemptions += exemption.amount;
             }
-            if(spouse) {
+            if (spouse) {
                 exemptions += exemption.amount;
+            }
+            
+            // Calculate phaseouts, resetting the exemptions total 
+            if(agi > exemption.phaseOut) {
+                // Calculate number of steps
+                var overage = agi - exemption.phaseOut;
+                var steps = overage / exemption.amountStep;
+                var exemptionReduction = exemption.reduction < 1 ? (exemption.reduction * exemptions) * steps : exemption.reduction * steps;
+                var finalAmount = exemptions - exemptionReduction;
+                exemptions = finalAmount;
             }
             // Dependents
             if(dependents > 0) {
@@ -110,4 +114,4 @@ class FedTaxScenario {
     }
 }
 
-export default FedTaxScenario;
+export default TaxScenario;

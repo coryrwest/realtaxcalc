@@ -1,8 +1,9 @@
 var React = require('react');
 var Utils = require('../utils');
 
-var FedTaxScenario = require('../common/FedTaxScenario');
-var TaxData = require('json!../data/2015-Fed.json');
+var TaxPicture = require('../common/TaxPicture');
+var FedTaxData = require('json!../data/2015-Fed.json');
+var StateTaxData = require('json!../data/2015-CA.json');
 
 var BracketDisplayComponent = React.createClass({
     getBracket: function() { 
@@ -16,19 +17,38 @@ var BracketDisplayComponent = React.createClass({
             filingStatus : this.props.state.currentFilingStatus
         };
         
-        this.scenario = new FedTaxScenario.default(TaxData, scenarioData);
+        this.picture = new TaxPicture.default(FedTaxData, StateTaxData, scenarioData);
                
-        var taxTable = this.scenario.taxTable;
-        var brackets = taxTable.incomeTax.getBracket(this.props.state.currentFilingStatus, this.scenario.taxableIncome);
-        this.bracketIndex = brackets[0];
-        this.brackets = brackets[1];
+        // Federal Brackets
+        var fedTaxTable = this.picture.fed.taxTable;
+        var fedBrackets = fedTaxTable.incomeTax.getBracket(this.props.state.currentFilingStatus, this.picture.fed.taxableIncome);
+        this.fedBracketIndex = fedBrackets[0];
+        this.fedBrackets = fedBrackets[1];
+        
+        // State Brackets
+        var stateTaxTable = this.picture.state.taxTable;
+        var stateBrackets = stateTaxTable.incomeTax.getBracket(this.props.state.currentFilingStatus, this.picture.state.taxableIncome);
+        this.stateBracketIndex = stateBrackets[0];
+        this.stateBrackets = stateBrackets[1];
     },
     render: function render() {
         this.getBracket();
-        var index = this.bracketIndex;
-        var bracketItems = this.brackets.map(function(bracket, i){
+        var fedIndex = this.fedBracketIndex;
+        var fedBracketItems = this.fedBrackets.map(function(bracket, i){
             return (
-                <tr className={i === index ? 'active' : ''}>
+                <tr className={i === fedIndex ? 'active' : ''}>
+                    <td>{Utils.cleanAndFormatMoney(bracket.bottom)}</td>
+                    <td>{Utils.cleanAndFormatMoney(bracket.top)}</td>
+                    <td>{Utils.twoDigitRound(bracket.taxRate * 100)} %</td>
+                    <td>{Utils.cleanAndFormatMoney(bracket.flatTax)}</td>
+                </tr>
+            )
+        });
+        
+        var stateIndex = this.stateBracketIndex;
+        var stateBracketItems = this.stateBrackets.map(function(bracket, i){
+            return (
+                <tr className={i === stateIndex ? 'active' : ''}>
                     <td>{Utils.cleanAndFormatMoney(bracket.bottom)}</td>
                     <td>{Utils.cleanAndFormatMoney(bracket.top)}</td>
                     <td>{Utils.twoDigitRound(bracket.taxRate * 100)} %</td>
@@ -40,7 +60,7 @@ var BracketDisplayComponent = React.createClass({
         return (
             <div className="row">
                 <div className="col-md-12">
-                    <h3>Tax Bracket:</h3>
+                    <h3>Federal Tax Bracket:</h3>
                     <table className="table table-striped data-table">
                         <tbody>
                             <tr>
@@ -49,7 +69,19 @@ var BracketDisplayComponent = React.createClass({
                                 <th>Tax Rate</th>
                                 <th>Flat Tax</th>
                             </tr>
-                            {bracketItems}
+                            {fedBracketItems}
+                        </tbody>
+                    </table>  
+                    <h3>State Tax Bracket:</h3>
+                    <table className="table table-striped data-table">
+                        <tbody>
+                            <tr>
+                                <th>Bottom</th>
+                                <th>Top</th>
+                                <th>Tax Rate</th>
+                                <th>Flat Tax</th>
+                            </tr>
+                            {stateBracketItems}
                         </tbody>
                     </table>  
                 </div>

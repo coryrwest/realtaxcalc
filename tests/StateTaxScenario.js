@@ -1,5 +1,5 @@
 var assert = require('chai').assert;
-import StateTaxScenario from "../src/common/StateTaxScenario";
+import StateTaxScenario from "../src/common/TaxScenario";
 
 import Data from "../src/data/2015-CA.json";
 

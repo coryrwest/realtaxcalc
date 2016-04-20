@@ -17,9 +17,11 @@ var FederalSettingsComponent = React.createClass({
             <Checkbox
                 name="standardDeduction"
                 value={this.props.state.standardDeduction}
-                label="Standard Deduction"
+                label=""
                 rowLabel="Standard Deduction"
                 onChange={this.updateOption}
+                labelClassName={[{'col-sm-3': false}, 'col-sm-4']}
+                elementWrapperClassName={[{'col-sm-9': false}, 'col-sm-8']}
             />
         </div>
       );

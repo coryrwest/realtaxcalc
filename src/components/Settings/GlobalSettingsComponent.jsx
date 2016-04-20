@@ -12,7 +12,7 @@ var GlobalSettingsComponent = React.createClass({
 	},
     render: function () {
       return (
-        <Formsy.Form onValid={this.submit}>
+        <Formsy.Form>
             <h3>Tax Options:</h3>
             <Checkbox name="displayState" rowLabel="Use State Tax"
                 value={this.props.state.displayState}

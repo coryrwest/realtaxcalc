@@ -10,9 +10,6 @@ var ScenarioSettingsComponent = React.createClass({
     updateOption: function(name, value) {
         State.trigger('setting:set', name, value);
     },
-    shouldComponentUpdate: function(nextProps) {
-		return nextProps.state.agi != this.props.state.agi;
-	},
     reset: function() {
         State.trigger('reset');
     },
@@ -21,8 +18,12 @@ var ScenarioSettingsComponent = React.createClass({
             <div>
                 <Formsy.Form>
                     <Common state={this.props.state}/>
-                    <FederalTax visible={this.props.state.displayFederal} state={this.props.state}/>
-                    <StateTax visible={this.props.state.displayState} state={this.props.state}/>
+                    <h4>Federal Options</h4>
+                    <FederalTax state={this.props.state}/>
+                    <div className={this.props.state.displayState ? "visible" : "hidden"}>
+                        <h4>State Options</h4>
+                        <StateTax state={this.props.state}/>
+                    </div>
                     <button className="btn btn-default" onClick={this.reset}>Reset Scenario</button>
                 </Formsy.Form>
                 <hr />

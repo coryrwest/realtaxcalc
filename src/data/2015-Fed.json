@@ -175,6 +175,7 @@
             "flatTax": 125362.00
         }
     ],
+    "otherTaxExplanation": "This includes a 1.45% tax for Medicare and a 6.2% tax for Social Security.",
     "other": {
         "medicare" : {
             "bottom": 0,
@@ -188,19 +189,27 @@
     "exemptions": {
         "single" : {
             "amount": 4000,
-            "phaseOut": 258250
+            "phaseOut": 258250,
+            "reduction": 0.02,
+            "amountStep": 2500
         },
         "marriedJoint": {
             "amount": 4000,
-            "phaseOut": 309900
+            "phaseOut": 309900,
+            "reduction": 0.02,
+            "amountStep": 2500
         },
         "marriedSeparate": {
             "amount": 4000,
-            "phaseOut": 157950
+            "phaseOut": 157950,
+            "reduction": 0.02,
+            "amountStep": 1250
         },
         "hoh": {
             "amount": 4000,
-            "phaseOut": 284050
+            "phaseOut": 284050,
+            "reduction": 0.02,
+            "amountStep": 2500
         },
         "dependents": {
             "amount": 4000

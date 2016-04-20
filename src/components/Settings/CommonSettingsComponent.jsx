@@ -24,6 +24,8 @@ var CommonSettingsComponent = React.createClass({
                 validations="isWords"
                 validationError="Filing Status is required."
                 onChange={this.updateOption}
+                labelClassName={[{'col-sm-3': false}, 'col-sm-4']}
+                elementWrapperClassName={[{'col-sm-9': false}, 'col-sm-8']}
             />
             <Input
                 name="agi"
@@ -35,6 +37,8 @@ var CommonSettingsComponent = React.createClass({
                 validations="isNumeric"
                 validationError="Income is required and must contain only numbers."
                 onChange={this.updateOption}
+                labelClassName={[{'col-sm-3': false}, 'col-sm-4']}
+                elementWrapperClassName={[{'col-sm-9': false}, 'col-sm-8']}
             />
             <Input
                 name="dependents"
@@ -43,20 +47,26 @@ var CommonSettingsComponent = React.createClass({
                 label="Dependents"
                 type="text"
                 onChange={this.updateOption}
+                labelClassName={[{'col-sm-3': false}, 'col-sm-4']}
+                elementWrapperClassName={[{'col-sm-9': false}, 'col-sm-8']}
             />
             <Checkbox
                 name="personalExemp"
                 value={this.props.state.personalExemp}
-                label="Personal Exemption"
+                label=""
                 rowLabel="Personal Exemption"
                 onChange={this.updateOption}
+                labelClassName={[{'col-sm-3': false}, 'col-sm-4']}
+                elementWrapperClassName={[{'col-sm-9': false}, 'col-sm-8']}
             />
             <Checkbox
                 name="spouseExemp"
                 value={this.props.state.spouseExemp}
-                label="Spouse Exemption"
+                label=""
                 rowLabel="Spouse Exemption"
                 onChange={this.updateOption}
+                labelClassName={[{'col-sm-3': false}, 'col-sm-4']}
+                elementWrapperClassName={[{'col-sm-9': false}, 'col-sm-8']}
             />
         </div>
       );

@@ -6,6 +6,7 @@ class TaxTable {
     constructor(tableJson) {
         this.incomeTax = {};
         this.otherTax = {};
+        this.otherTaxExplanation = '';
 
         if (tableJson) {
             // Build income tax object
@@ -18,6 +19,10 @@ class TaxTable {
                     var otherData = other[otherKeys[i]];
                     this.otherTax[otherKeys[i]] = new OtherTax(otherData.top, otherData.bottom, otherData.rate);
                 }
+            }
+            
+            if(tableJson.otherTaxExplanation) {
+                this.otherTaxExplanation = tableJson.otherTaxExplanation;
             }
         }
     }

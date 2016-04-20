@@ -1,5 +1,5 @@
 var assert = require('chai').assert;
-import FedTaxScenario from "../src/common/FedTaxScenario";
+import FedTaxScenario from "../src/common/TaxScenario";
 
 import Data from "../src/data/2015-Fed.json";
 
