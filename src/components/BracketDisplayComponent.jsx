@@ -71,19 +71,22 @@ var BracketDisplayComponent = React.createClass({
                             </tr>
                             {fedBracketItems}
                         </tbody>
-                    </table>  
-                    <h3>State Tax Bracket:</h3>
-                    <table className="table table-striped data-table">
-                        <tbody>
-                            <tr>
-                                <th>Bottom</th>
-                                <th>Top</th>
-                                <th>Tax Rate</th>
-                                <th>Flat Tax</th>
-                            </tr>
-                            {stateBracketItems}
-                        </tbody>
-                    </table>  
+                    </table> 
+                    
+                    <div className={this.props.state.displayState ? "visible" : "hidden"}> 
+                        <h3>State Tax Bracket:</h3>
+                        <table className="table table-striped data-table">
+                            <tbody>
+                                <tr>
+                                    <th>Bottom</th>
+                                    <th>Top</th>
+                                    <th>Tax Rate</th>
+                                    <th>Flat Tax</th>
+                                </tr>
+                                {stateBracketItems}
+                            </tbody>
+                        </table>  
+                    </div>
                 </div>
             </div>
         );

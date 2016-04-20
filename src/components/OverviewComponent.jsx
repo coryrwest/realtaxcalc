@@ -154,71 +154,73 @@ var OverviewComponent = React.createClass({
                         </tbody>
                     </table>  
                     
-                    <h3>State Tax Breakdown:</h3>
-                    <table className="table table-striped data-table">
-                        <tbody>
-                            <tr>
-                                <td>Adjusted Gross Income:</td>
-                                <td>
-                                    <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.picture.agi)}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="indent-1">Exemptions:</td>
-                                <td>
-                                    <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.picture.state.exemptions)}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="indent-1">Deductions:</td>
-                                <td>
-                                    <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.picture.state.deductions)}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Taxable Income:</strong></td>
-                                <td>
-                                    <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.picture.state.taxableIncome)}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="indent-1">State Income Tax:</td>
-                                <td>
-                                    <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.picture.state.incomeTax)}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="indent-1">Other Taxes:</td>
-                                <td>
-                                    <p className="text-right nopad nomar">
-                                        <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover id="overall-othertax-breakdown" title="Other Taxes">{this.picture.state.taxTable.otherTaxExplanation}</Popover>}><i className="glyphicon glyphicon-info-sign"></i></OverlayTrigger>
-                                        <span className="left-icon">{Utils.cleanAndFormatMoney(this.picture.state.otherTax)}</span>
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Total Tax:</strong></td>
-                                <td>
-                                    <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.picture.state.totalTax)}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Percentage of your income:</td>
-                                <td>
-                                    <p className="text-right nopad nomar">{Utils.twoDigitRound(this.picture.state.percent)} %</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Take home pay:</td>
-                                <td>
-                                    <p className="text-right nopad nomar">
-                                        <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover id="state-pay-breakdown" title="Pay Breakdown">Monthly: {this.state.monthly} <br/> Bi-Weekly: {this.state.biweekly} <br/> Weekly: {this.state.weekly} </Popover>}><i className="glyphicon glyphicon-info-sign"></i></OverlayTrigger>
-                                        <span className="left-icon">{Utils.cleanAndFormatMoney(this.picture.state.takeHomePay)}</span>
-                                    </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>  
+                    <div className={this.props.state.displayState ? "visible" : "hidden"}>
+                        <h3>State Tax Breakdown:</h3>
+                        <table className="table table-striped data-table">
+                            <tbody>
+                                <tr>
+                                    <td>Adjusted Gross Income:</td>
+                                    <td>
+                                        <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.picture.agi)}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="indent-1">Exemptions:</td>
+                                    <td>
+                                        <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.picture.state.exemptions)}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="indent-1">Deductions:</td>
+                                    <td>
+                                        <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.picture.state.deductions)}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Taxable Income:</strong></td>
+                                    <td>
+                                        <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.picture.state.taxableIncome)}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="indent-1">State Income Tax:</td>
+                                    <td>
+                                        <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.picture.state.incomeTax)}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="indent-1">Other Taxes:</td>
+                                    <td>
+                                        <p className="text-right nopad nomar">
+                                            <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover id="overall-othertax-breakdown" title="Other Taxes">{this.picture.state.taxTable.otherTaxExplanation}</Popover>}><i className="glyphicon glyphicon-info-sign"></i></OverlayTrigger>
+                                            <span className="left-icon">{Utils.cleanAndFormatMoney(this.picture.state.otherTax)}</span>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total Tax:</strong></td>
+                                    <td>
+                                        <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.picture.state.totalTax)}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Percentage of your income:</td>
+                                    <td>
+                                        <p className="text-right nopad nomar">{Utils.twoDigitRound(this.picture.state.percent)} %</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Take home pay:</td>
+                                    <td>
+                                        <p className="text-right nopad nomar">
+                                            <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover id="state-pay-breakdown" title="Pay Breakdown">Monthly: {this.state.monthly} <br/> Bi-Weekly: {this.state.biweekly} <br/> Weekly: {this.state.weekly} </Popover>}><i className="glyphicon glyphicon-info-sign"></i></OverlayTrigger>
+                                            <span className="left-icon">{Utils.cleanAndFormatMoney(this.picture.state.takeHomePay)}</span>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         );
