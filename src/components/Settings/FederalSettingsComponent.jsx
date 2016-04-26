@@ -9,14 +9,14 @@ var Checkbox = FRC.Checkbox;
 
 var FederalSettingsComponent = React.createClass({
     updateOption: function updateOption(name, value) {
-        State.trigger('setting:set', name, value);
+        State.trigger('setting:set', name, value, 0);
     },
     render: function () {      
       return (
         <div>
             <Checkbox
                 name="standardDeduction"
-                value={this.props.state.standardDeduction}
+                value={this.props.state[0].standardDeduction}
                 label=""
                 rowLabel="Standard Deduction"
                 onChange={this.updateOption}

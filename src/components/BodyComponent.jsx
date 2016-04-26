@@ -1,8 +1,5 @@
 var React = require('react');
-var GlobalSettings = require('./Settings/GlobalSettingsComponent.jsx');
-var ScenarioSettings = require('./Settings/ScenarioSettingsComponent.jsx');
-var Overview = require('./OverviewComponent.jsx');
-var Bracket = require('./BracketDisplayComponent.jsx');
+var SettingsContainer = require('./SettingsContainerCompnent.jsx');
 var State = require('../state');
 
 require('../reactions');
@@ -30,27 +27,23 @@ var BodyComponent = React.createClass({
                     Most other online calculators do not give you the full picture when you are trying to calculate your tax. 
                     This tries to.</p>
                 </div>
-                <div className="col-md-6">
-                    <GlobalSettings state={state} />
-                </div>
             </div>
             <div className="row">
                 <div className="col-md-6">
                     <div className="row">
                         <div className="col-md-12">
-                            <ScenarioSettings state={state} />
-                        </div>
-                        <div className="col-md-12">
-                            <Overview state={state} />
-                        </div>
-                        <div className="col-md-12">
-                            <Bracket state={state} />
+                            <SettingsContainer state={state} />
                         </div>
                     </div>
                 </div>
                 <div className="col-md-6">
                     <div className="row">
-                        <button className="btn btn-default">Add Scenario</button>
+                        <div className={state.length < 2 ? "visible" : "hidden"}>
+                            <button className="btn btn-default">Add Scenario</button>
+                        </div>
+                        <div className={state.length > 1 ? "visible" : "hidden"}>
+                            <button className="btn btn-default">Remove Scenario</button>
+                        </div>
                     </div>
                 </div>
             </div>

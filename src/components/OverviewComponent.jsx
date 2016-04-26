@@ -11,12 +11,12 @@ var OverviewComponent = React.createClass({
     calculateTaxes: function() {
         // Build scenario data
         var scenarioData = {
-            agi : this.props.state.agi,
-            personalExemp : this.props.state.personalExemp,
-            spouseExemp : this.props.state.spouseExemp,
-            dependents : this.props.state.dependents,
-            deduction : this.props.state.standardDeduction ? true : 0,
-            filingStatus : this.props.state.currentFilingStatus
+            agi : this.props.state[0].agi,
+            personalExemp : this.props.state[0].personalExemp,
+            spouseExemp : this.props.state[0].spouseExemp,
+            dependents : this.props.state[0].dependents,
+            deduction : this.props.state[0].standardDeduction ? true : 0,
+            filingStatus : this.props.state[0].currentFilingStatus
         };
         
         this.picture = new TaxPicture.default(FedTaxData, StateTaxData, scenarioData);
@@ -41,52 +41,54 @@ var OverviewComponent = React.createClass({
         return (
             <div className="row">
                 <div className="col-md-12">
-                    <h3>Total Tax Breakdown:</h3>
-                    <table className="table table-striped data-table">
-                        <tbody>
-                            <tr>
-                                <td>Adjusted Gross Income:</td>
-                                <td>
-                                    <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.picture.agi)}</p>
-                                </td>
-                            </tr><tr>
-                                <td>Income Tax:</td>
-                                <td>
-                                    <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.picture.incomeTax)}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Other Taxes:</td>
-                                <td>
-                                    <p className="text-right nopad nomar">
-                                        <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover id="overall-othertax-breakdown" title="Other Taxes">This includes other taxes for both Federal and your filing state. Please see those breakdowns for more information.</Popover>}><i className="glyphicon glyphicon-info-sign"></i></OverlayTrigger>
-                                        <span className="left-icon">{Utils.cleanAndFormatMoney(this.picture.otherTax)}</span>
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Total Tax:</strong></td>
-                                <td>
-                                    <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.picture.totalTax)}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Percentage of your income:</td>
-                                <td>
-                                    <p className="text-right nopad nomar">{Utils.twoDigitRound(this.picture.percent)} %</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Take home pay:</td>
-                                <td>
-                                    <p className="text-right nopad nomar">
-                                        <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover id="overall-pay-breakdown" title="Pay Breakdown">Monthly: {this.monthly} <br/> Bi-Weekly: {this.biweekly} <br/> Weekly: {this.weekly} </Popover>}><i className="glyphicon glyphicon-info-sign"></i></OverlayTrigger>
-                                        <span className="left-icon">{Utils.cleanAndFormatMoney(this.picture.takeHomePay)}</span>
-                                    </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div className={this.props.state[0].displayState ? "visible" : "hidden"}>
+                        <h3>Total Tax Breakdown:</h3>
+                        <table className="table table-striped data-table">
+                            <tbody>
+                                <tr>
+                                    <td>Adjusted Gross Income:</td>
+                                    <td>
+                                        <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.picture.agi)}</p>
+                                    </td>
+                                </tr><tr>
+                                    <td>Income Tax:</td>
+                                    <td>
+                                        <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.picture.incomeTax)}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Other Taxes:</td>
+                                    <td>
+                                        <p className="text-right nopad nomar">
+                                            <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover id="overall-othertax-breakdown" title="Other Taxes">This includes other taxes for both Federal and your filing state. Please see those breakdowns for more information.</Popover>}><i className="glyphicon glyphicon-info-sign"></i></OverlayTrigger>
+                                            <span className="left-icon">{Utils.cleanAndFormatMoney(this.picture.otherTax)}</span>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total Tax:</strong></td>
+                                    <td>
+                                        <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.picture.totalTax)}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Percentage of your income:</td>
+                                    <td>
+                                        <p className="text-right nopad nomar">{Utils.twoDigitRound(this.picture.percent)} %</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Take home pay:</td>
+                                    <td>
+                                        <p className="text-right nopad nomar">
+                                            <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover id="overall-pay-breakdown" title="Pay Breakdown">Monthly: {this.monthly} <br/> Bi-Weekly: {this.biweekly} <br/> Weekly: {this.weekly} </Popover>}><i className="glyphicon glyphicon-info-sign"></i></OverlayTrigger>
+                                            <span className="left-icon">{Utils.cleanAndFormatMoney(this.picture.takeHomePay)}</span>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     
                     <h3>Federal Tax Breakdown:</h3>
                     <table className="table table-striped data-table">
@@ -154,7 +156,7 @@ var OverviewComponent = React.createClass({
                         </tbody>
                     </table>  
                     
-                    <div className={this.props.state.displayState ? "visible" : "hidden"}>
+                    <div className={this.props.state[0].displayState ? "visible" : "hidden"}>
                         <h3>State Tax Breakdown:</h3>
                         <table className="table table-striped data-table">
                             <tbody>

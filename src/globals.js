@@ -24,17 +24,19 @@ module.exports = {
         //     label : "Qualifying Widow(er)"
         // }
     ],
-    defaultState: {
-        displayState: false,
-        state: 'CA',
-        agi: 0,
-        currentFilingStatus: "single",
-        filingState: '',
-        personalExemp: true,
-        spouseExemp: false,
-        dependents: 0,
-        standardDeduction: true
-    },
+    defaultState: [
+        {
+            displayState: false,
+            state: 'CA',
+            agi: 0,
+            currentFilingStatus: "single",
+            filingState: '',
+            personalExemp: true,
+            spouseExemp: false,
+            dependents: 0,
+            standardDeduction: true
+        }
+    ],
     states: [
         {
             value : "CA",

@@ -10,7 +10,7 @@ var Checkbox = FRC.Checkbox;
 
 var CommonSettingsComponent = React.createClass({
     updateOption: function updateOption(name, value) {
-        State.trigger('setting:set', name, value);
+        State.trigger('setting:set', name, value, 0);
     },
     render: function () {      
       return (
@@ -18,7 +18,7 @@ var CommonSettingsComponent = React.createClass({
             <Select
                 name="currentFilingStatus"
                 label="Filing Status"
-                value={this.props.state.currentFilingStatus}
+                value={this.props.state[0].currentFilingStatus}
                 options={Globals.filingStatuses}
                 required
                 validations="isWords"
@@ -30,7 +30,7 @@ var CommonSettingsComponent = React.createClass({
             <Input
                 name="agi"
                 id="agi"
-                value={this.props.state.agi}
+                value={this.props.state[0].agi}
                 label="Income"
                 type="text"
                 required
@@ -43,7 +43,7 @@ var CommonSettingsComponent = React.createClass({
             <Input
                 name="dependents"
                 id="dependents"
-                value=""
+                value={this.props.state[0].dependents}
                 label="Dependents"
                 type="text"
                 onChange={this.updateOption}
@@ -52,7 +52,7 @@ var CommonSettingsComponent = React.createClass({
             />
             <Checkbox
                 name="personalExemp"
-                value={this.props.state.personalExemp}
+                value={this.props.state[0].personalExemp}
                 label=""
                 rowLabel="Personal Exemption"
                 onChange={this.updateOption}
@@ -61,7 +61,7 @@ var CommonSettingsComponent = React.createClass({
             />
             <Checkbox
                 name="spouseExemp"
-                value={this.props.state.spouseExemp}
+                value={this.props.state[0].spouseExemp}
                 label=""
                 rowLabel="Spouse Exemption"
                 onChange={this.updateOption}
