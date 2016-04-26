@@ -106,7 +106,7 @@ class TaxScenario {
             // if it is an integer, we were provided with an itemized deduction
             if(deductionType === true) {
                 deductions = tableJson.deductions[filingStatus] || 0;
-            } else if(Number.isInteger(deductionType)) {
+            } else if(!isNaN(deductionType)) {
                 deductions = deductionType;
             }
         }

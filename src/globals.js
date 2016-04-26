@@ -34,7 +34,8 @@ module.exports = {
             personalExemp: true,
             spouseExemp: false,
             dependents: 0,
-            standardDeduction: true
+            standardDeduction: true,
+            itemizedDeduction: 0
         }
     ],
     states: [

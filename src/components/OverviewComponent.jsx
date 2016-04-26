@@ -15,7 +15,7 @@ var OverviewComponent = React.createClass({
             personalExemp : this.props.state[0].personalExemp,
             spouseExemp : this.props.state[0].spouseExemp,
             dependents : this.props.state[0].dependents,
-            deduction : this.props.state[0].standardDeduction ? true : 0,
+            deduction : this.props.state[0].standardDeduction ? true : this.props.state[0].itemizedDeduction,
             filingStatus : this.props.state[0].currentFilingStatus
         };
         
