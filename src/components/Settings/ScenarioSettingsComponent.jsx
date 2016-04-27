@@ -8,21 +8,21 @@ var State = require('../../state');
 
 var ScenarioSettingsComponent = React.createClass({
     updateOption: function(name, value) {
-        State.trigger('setting:set', name, value, 0);
+        State.trigger('setting:set', name, value, this.props.index);
     },
     reset: function() {
-        State.trigger('reset');
+        State.trigger('scenario:reset');
     },
     render: function () {
         return (
             <div>
                 <Formsy.Form>
-                    <Common state={this.props.state}/>
+                    <Common state={this.props.state} index={this.props.index}/>
                     <h4>Federal Options</h4>
-                    <FederalTax state={this.props.state}/>
-                    <div className={this.props.state[0].displayState ? "visible" : "hidden"}>
+                    <FederalTax state={this.props.state} index={this.props.index}/>
+                    <div className={this.props.state[this.props.index].displayState ? "visible" : "hidden"}>
                         <h4>State Options</h4>
-                        <StateTax state={this.props.state}/>
+                        <StateTax state={this.props.state} index={this.props.index}/>
                     </div>
                     <button className="btn btn-default" onClick={this.reset}>Reset Scenario</button>
                 </Formsy.Form>

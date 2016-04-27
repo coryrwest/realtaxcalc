@@ -10,7 +10,7 @@ var Checkbox = FRC.Checkbox;
 
 var CommonSettingsComponent = React.createClass({
     updateOption: function updateOption(name, value) {
-        State.trigger('setting:set', name, value, 0);
+        State.trigger('setting:set', name, value, this.props.index);
     },
     render: function () {      
       return (
@@ -18,7 +18,7 @@ var CommonSettingsComponent = React.createClass({
             <Select
                 name="currentFilingStatus"
                 label="Filing Status"
-                value={this.props.state[0].currentFilingStatus}
+                value={this.props.state[this.props.index].currentFilingStatus}
                 options={Globals.filingStatuses}
                 required
                 validations="isWords"
@@ -30,7 +30,7 @@ var CommonSettingsComponent = React.createClass({
             <Input
                 name="agi"
                 id="agi"
-                value={this.props.state[0].agi}
+                value={this.props.state[this.props.index].agi}
                 label="Income"
                 type="text"
                 required
@@ -43,7 +43,7 @@ var CommonSettingsComponent = React.createClass({
             <Input
                 name="dependents"
                 id="dependents"
-                value={this.props.state[0].dependents}
+                value={this.props.state[this.props.index].dependents}
                 label="Dependents"
                 type="text"
                 onChange={this.updateOption}
@@ -52,7 +52,7 @@ var CommonSettingsComponent = React.createClass({
             />
             <Checkbox
                 name="personalExemp"
-                value={this.props.state[0].personalExemp}
+                value={this.props.state[this.props.index].personalExemp}
                 label=""
                 rowLabel="Personal Exemption"
                 onChange={this.updateOption}
@@ -61,7 +61,7 @@ var CommonSettingsComponent = React.createClass({
             />
             <Checkbox
                 name="spouseExemp"
-                value={this.props.state[0].spouseExemp}
+                value={this.props.state[this.props.index].spouseExemp}
                 label=""
                 rowLabel="Spouse Exemption"
                 onChange={this.updateOption}

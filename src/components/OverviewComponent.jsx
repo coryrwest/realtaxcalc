@@ -11,12 +11,12 @@ var OverviewComponent = React.createClass({
     calculateTaxes: function() {
         // Build scenario data
         var scenarioData = {
-            agi : this.props.state[0].agi,
-            personalExemp : this.props.state[0].personalExemp,
-            spouseExemp : this.props.state[0].spouseExemp,
-            dependents : this.props.state[0].dependents,
-            deduction : this.props.state[0].standardDeduction ? true : this.props.state[0].itemizedDeduction,
-            filingStatus : this.props.state[0].currentFilingStatus
+            agi : this.props.state[this.props.index].agi,
+            personalExemp : this.props.state[this.props.index].personalExemp,
+            spouseExemp : this.props.state[this.props.index].spouseExemp,
+            dependents : this.props.state[this.props.index].dependents,
+            deduction : this.props.state[this.props.index].standardDeduction ? true : this.props.state[this.props.index].itemizedDeduction,
+            filingStatus : this.props.state[this.props.index].currentFilingStatus
         };
         
         this.picture = new TaxPicture.default(FedTaxData, StateTaxData, scenarioData);
@@ -41,7 +41,7 @@ var OverviewComponent = React.createClass({
         return (
             <div className="row">
                 <div className="col-md-12">
-                    <div className={this.props.state[0].displayState ? "visible" : "hidden"}>
+                    <div className={this.props.state[this.props.index].displayState ? "visible" : "hidden"}>
                         <h3>Total Tax Breakdown:</h3>
                         <table className="table table-striped data-table">
                             <tbody>
@@ -156,7 +156,7 @@ var OverviewComponent = React.createClass({
                         </tbody>
                     </table>  
                     
-                    <div className={this.props.state[0].displayState ? "visible" : "hidden"}>
+                    <div className={this.props.state[this.props.index].displayState ? "visible" : "hidden"}>
                         <h3>State Tax Breakdown:</h3>
                         <table className="table table-striped data-table">
                             <tbody>

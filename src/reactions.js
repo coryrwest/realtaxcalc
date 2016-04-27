@@ -14,6 +14,12 @@ var Globals = require('./globals');
  * Sets a setting.
  * @param  {Key} The setting key. {Value} The setting value.
  */
+State.on('state:initialize', function() {
+    if(!Utils.storeExists(Globals.storeName)) {
+        Utils.store(Globals.storeName, State.get()); 
+    }
+});
+
 State.on('setting:set', function(name, value, scenarioIndex){
     console.log('Setting ' + name + ' ' + value + ' Saving');
     var setting = {};
@@ -25,7 +31,7 @@ State.on('setting:set', function(name, value, scenarioIndex){
 });
 
 
-State.on('reset', function(){
+State.on('scenario:reset', function(){
     // Reset the store
     State.get().set(Globals.defaultState);
     // Save the state in localStorage
@@ -33,22 +39,25 @@ State.on('reset', function(){
     console.log('State reset');
 });
 
-State.on('newScenario', function(){
+// TODO: look into using Freezers Array nodes:
+// https://github.com/arqex/freezer#update-methods
+State.on('state:newScenario', function(){
     var scenarios = State.get();
-	
+    
 	if(scenarios.length < 2) {
-		State.get()[1].set(Globals.defaultState);
+		State.get().set(1, Globals.defaultState[0]);
 	}
     // Save the state in localStorage
     Utils.store(Globals.storeName, State.get());
 });
 
-State.on('deleteScenario', function(){
+State.on('state:deleteScenario', function(){
     var scenarios = State.get();
 	
 	if(scenarios.length > 1) {
-		scenarios.splice(1);
-		State.get().set(scenarios);
+        var newScenarios = [];
+        newScenarios[0] = scenarios[0];
+		State.get().reset(newScenarios);
 	}
     // Save the state in localStorage
     Utils.store(Globals.storeName, State.get());

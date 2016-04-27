@@ -6,28 +6,28 @@ var FedTaxData = require('json!../data/2015-Fed.json');
 var StateTaxData = require('json!../data/2015-CA.json');
 
 var BracketDisplayComponent = React.createClass({
-    getBracket: function() { 
+    getBracket: function() {
         // Build scenario data
         var scenarioData = {
-            agi : this.props.state[0].agi,
-            personalExemp : this.props.state[0].personalExemp,
-            spouseExemp : this.props.state[0].spouseExemp,
-            dependents : this.props.state[0].dependents,
-            deduction : this.props.state[0].standardDeduction ? true : 0,
-            filingStatus : this.props.state[0].currentFilingStatus
+            agi : this.props.state[this.props.index].agi,
+            personalExemp : this.props.state[this.props.index].personalExemp,
+            spouseExemp : this.props.state[this.props.index].spouseExemp,
+            dependents : this.props.state[this.props.index].dependents,
+            deduction : this.props.state[this.props.index].standardDeduction ? true : 0,
+            filingStatus : this.props.state[this.props.index].currentFilingStatus
         };
         
         this.picture = new TaxPicture.default(FedTaxData, StateTaxData, scenarioData);
                
         // Federal Brackets
         var fedTaxTable = this.picture.fed.taxTable;
-        var fedBrackets = fedTaxTable.incomeTax.getBracket(this.props.state[0].currentFilingStatus, this.picture.fed.taxableIncome);
+        var fedBrackets = fedTaxTable.incomeTax.getBracket(this.props.state[this.props.index].currentFilingStatus, this.picture.fed.taxableIncome);
         this.fedBracketIndex = fedBrackets[0];
         this.fedBrackets = fedBrackets[1];
         
         // State Brackets
         var stateTaxTable = this.picture.state.taxTable;
-        var stateBrackets = stateTaxTable.incomeTax.getBracket(this.props.state[0].currentFilingStatus, this.picture.state.taxableIncome);
+        var stateBrackets = stateTaxTable.incomeTax.getBracket(this.props.state[this.props.index].currentFilingStatus, this.picture.state.taxableIncome);
         this.stateBracketIndex = stateBrackets[0];
         this.stateBrackets = stateBrackets[1];
     },
@@ -73,7 +73,7 @@ var BracketDisplayComponent = React.createClass({
                         </tbody>
                     </table> 
                     
-                    <div className={this.props.state[0].displayState ? "visible" : "hidden"}> 
+                    <div className={this.props.state[this.props.index].displayState ? "visible" : "hidden"}> 
                         <h3>State Tax Bracket:</h3>
                         <table className="table table-striped data-table">
                             <tbody>

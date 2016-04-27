@@ -7,7 +7,7 @@ var Select = FRC.Select;
 
 var StateSettingsComponent = React.createClass({
     updateOption: function (name, value) {
-        State.trigger('setting:set', name, value, 0);
+        State.trigger('setting:set', name, value, this.props.index);
     },
     render: function () {
         return (
@@ -15,7 +15,7 @@ var StateSettingsComponent = React.createClass({
             <Select
                 name="filingState"
                 label="Filing State"
-                value={this.props.state[0].filingState}
+                value={this.props.state[this.props.index].filingState}
                 options={Globals.states}
                 required
                 validations="isWords"

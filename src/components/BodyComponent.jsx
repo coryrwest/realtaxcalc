@@ -1,11 +1,14 @@
 var React = require('react');
-var SettingsContainer = require('./SettingsContainerCompnent.jsx');
+var ScenarioContainer = require('./ScenarioContainerComponent.jsx');
 var State = require('../state');
 
 require('../reactions');
 require('../styles/bs-callout.scss');
 
 var BodyComponent = React.createClass({
+    componentWillMount: function() {
+        State.trigger('state:initialize');  
+    },
     componentDidMount: function () {
         var me = this;
         // Here the magic happens. Everytime that the
@@ -15,9 +18,20 @@ var BodyComponent = React.createClass({
             me.forceUpdate();
         });
     },
+    addScenario: function () {
+        State.trigger('state:newScenario');
+    },
+    removeScenario: function () {
+        State.trigger('state:deleteScenario');
+    },
     render: function() {
         var state = State.get();
-      
+        
+        var secScenario;
+        if(state.length > 1) {
+            secScenario = <ScenarioContainer state={state} index="1" />;
+        }
+        
         return (
         <div className="container">
             <div className="row">
@@ -32,17 +46,18 @@ var BodyComponent = React.createClass({
                 <div className="col-md-6">
                     <div className="row">
                         <div className="col-md-12">
-                            <SettingsContainer state={state} />
+                            <ScenarioContainer state={state} index="0" />
                         </div>
                     </div>
                 </div>
                 <div className="col-md-6">
                     <div className="row">
                         <div className={state.length < 2 ? "visible" : "hidden"}>
-                            <button className="btn btn-default">Add Scenario</button>
+                            <button className="btn btn-default" onClick={this.addScenario}>Add Scenario</button>
                         </div>
                         <div className={state.length > 1 ? "visible" : "hidden"}>
-                            <button className="btn btn-default">Remove Scenario</button>
+                            {secScenario}
+                            <button className="btn btn-default" onClick={this.removeScenario}>Remove Scenario</button>
                         </div>
                     </div>
                 </div>

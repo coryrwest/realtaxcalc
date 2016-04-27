@@ -9,6 +9,10 @@ module.exports = {
 			var store = localStorage.getItem(name);
 			return (store && JSON.parse(store)) || false;
 		},
+		storeExists: function (name) {
+			var store = localStorage.getItem(name);
+			return (store !== undefined && store !== null);
+		},
         cleanAndFormatMoney: function(numeric) {
             var cleaned = Math.round(numeric * 100) / 100;
             return accting.formatMoney(cleaned, "$", 2, ",", ".");
