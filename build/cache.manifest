@@ -10,3 +10,6 @@ CACHE:
 /realtaxcalc/fonts/glyphicons-halflings-regular.ttf
 /realtaxcalc/fonts/glyphicons-halflings-regular.woff
 /realtaxcalc/fonts/glyphicons-halflings-regular.woff2
+
+NETWORK:
+*
