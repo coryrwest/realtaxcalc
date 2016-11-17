@@ -2,6 +2,7 @@ var React = require('react');
 var Formsy = require('formsy-react');
 var FRC = require('formsy-react-components');
 var Globals = require('../../globals');
+var State = require('../../state');
 
 var Select = FRC.Select;
 
@@ -13,9 +14,9 @@ var StateSettingsComponent = React.createClass({
         return (
         <div>
             <Select
-                name="filingState"
+                name="state"
                 label="Filing State"
-                value={this.props.state[this.props.index].filingState}
+                value={this.props.state[this.props.index].state}
                 options={Globals.states}
                 required
                 validations="isWords"

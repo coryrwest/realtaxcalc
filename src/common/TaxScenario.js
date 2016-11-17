@@ -62,10 +62,10 @@ class TaxScenario {
             
                 if(this.totalTax > 0) {
                     // Percent
-                    this.percent = (this.totalTax / this.agi) * 100;    
-                    // Take home pay
-                    this.takeHomePay = this.agi - this.totalTax;
-                }
+                    this.percent = (this.totalTax / this.agi) * 100;
+                }    
+                // Take home pay
+                this.takeHomePay = this.agi - this.totalTax;
             }
         }
     }

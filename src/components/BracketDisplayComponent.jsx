@@ -3,7 +3,10 @@ var Utils = require('../utils');
 
 var TaxPicture = require('../common/TaxPicture');
 var FedTaxData = require('json!../data/2015-Fed.json');
-var StateTaxData = require('json!../data/2015-CA.json');
+var StateTaxData = {
+    'CA' : require('json!../data/2015-CA.json'),
+    'TN' : require('json!../data/2015-TN.json')
+};
 
 var BracketDisplayComponent = React.createClass({
     getBracket: function() {
@@ -17,7 +20,7 @@ var BracketDisplayComponent = React.createClass({
             filingStatus : this.props.state[this.props.index].currentFilingStatus
         };
         
-        this.picture = new TaxPicture.default(FedTaxData, StateTaxData, scenarioData);
+        this.picture = new TaxPicture.default(FedTaxData, StateTaxData[this.props.state[this.props.index].state], scenarioData);
                
         // Federal Brackets
         var fedTaxTable = this.picture.fed.taxTable;

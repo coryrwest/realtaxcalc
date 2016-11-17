@@ -30,7 +30,6 @@ module.exports = {
             state: 'CA',
             agi: 0,
             currentFilingStatus: "single",
-            filingState: '',
             personalExemp: true,
             spouseExemp: false,
             dependents: 0,
@@ -42,6 +41,10 @@ module.exports = {
         {
             value : "CA",
             label : "California"
+        },
+        {
+            value : "TN",
+            label : "Tennessee"
         },
     ]
 };

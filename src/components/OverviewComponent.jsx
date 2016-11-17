@@ -4,8 +4,12 @@ var Popover = require('react-bootstrap').Popover;
 var OverlayTrigger = require('react-bootstrap').OverlayTrigger;
 
 var TaxPicture = require('../common/TaxPicture');
-var FedTaxData = require('json!../data/2015-Fed.json');
-var StateTaxData = require('json!../data/2015-CA.json');
+// Figure out a better way to do this
+var FedTaxData = require('json!../data/2015-' + 'Fed' + '.json');
+var StateTaxData = {
+    'CA' : require('json!../data/2015-CA.json'),
+    'TN' : require('json!../data/2015-TN.json')
+};
 
 var OverviewComponent = React.createClass({
     calculateTaxes: function() {
@@ -19,7 +23,7 @@ var OverviewComponent = React.createClass({
             filingStatus : this.props.state[this.props.index].currentFilingStatus
         };
         
-        this.picture = new TaxPicture.default(FedTaxData, StateTaxData, scenarioData);
+        this.picture = new TaxPicture.default(FedTaxData, StateTaxData[this.props.state[this.props.index].state], scenarioData);
     },
     render: function render() {
         this.calculateTaxes();
