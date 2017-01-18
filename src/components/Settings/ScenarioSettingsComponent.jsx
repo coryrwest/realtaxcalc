@@ -1,12 +1,11 @@
-var React = require('react');
+import React from 'react';
 var Formsy = require('formsy-react');
 var FederalTax = require('./FederalSettingsComponent.jsx');
 var StateTax = require('./StateSettingsComponent.jsx');
 var Common = require('./CommonSettingsComponent.jsx');
-var State = require('../../state');
+import State from '../../state';
 
-
-var ScenarioSettingsComponent = React.createClass({
+let ScenarioSettingsComponent = React.createClass({
     updateOption: function(name, value) {
         State.trigger('setting:set', name, value, this.props.index);
     },

@@ -45,7 +45,7 @@ class TaxScenario {
             this.taxableIncome = this.taxableIncome - this.exemptions;
             
             // Deductions
-            var deductionType = isNaN(scenarioData.deduction) ? true : scenarioData.deduction;
+            const deductionType = isNaN(scenarioData.deduction) ? true : scenarioData.deduction;
             this.deductions = this.calculateDeductions(tableJson, scenarioData.filingStatus, deductionType);
             this.taxableIncome = this.taxableIncome - this.deductions;
                         
@@ -71,9 +71,9 @@ class TaxScenario {
     }
     
     calculateExemptions(tableJson, agi, filingStatus, personal, spouse, dependents) {
-        var exemptions = 0;
+        let exemptions = 0;
         if(tableJson && tableJson.exemptions && tableJson.exemptions[filingStatus]) {
-            var exemption = tableJson.exemptions[filingStatus];
+            const exemption = tableJson.exemptions[filingStatus];
             // Get exemption amount
             if (personal) {
                 exemptions += exemption.amount;
@@ -85,10 +85,10 @@ class TaxScenario {
             // Calculate phaseouts, resetting the exemptions total 
             if(agi > exemption.phaseOut) {
                 // Calculate number of steps
-                var overage = agi - exemption.phaseOut;
-                var steps = overage / exemption.amountStep;
-                var exemptionReduction = exemption.reduction < 1 ? (exemption.reduction * exemptions) * steps : exemption.reduction * steps;
-                var finalAmount = exemptions - exemptionReduction;
+                const overage = agi - exemption.phaseOut;
+                const steps = overage / exemption.amountStep;
+                const exemptionReduction = exemption.reduction < 1 ? (exemption.reduction * exemptions) * steps : exemption.reduction * steps;
+                const finalAmount = exemptions - exemptionReduction;
                 exemptions = finalAmount;
             }
             // Dependents
@@ -100,7 +100,7 @@ class TaxScenario {
     }
     
     calculateDeductions(tableJson, filingStatus, deductionType) {
-        var deductions = 0;
+        let deductions = 0;
         if(tableJson && tableJson.deductions) {
             // deductionType true means standard deduction.
             // if it is an integer, we were provided with an itemized deduction

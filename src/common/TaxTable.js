@@ -13,10 +13,10 @@ class TaxTable {
             this.incomeTax = new IncomeTaxTable(tableJson);
             // Build other tax object
             if (tableJson.other) {
-                var other = tableJson.other;
-                var otherKeys = Object.keys(other);
+                const other = tableJson.other;
+                const otherKeys = Object.keys(other);
                 for (var i = 0; i < otherKeys.length; i++) {
-                    var otherData = other[otherKeys[i]];
+                    const otherData = other[otherKeys[i]];
                     this.otherTax[otherKeys[i]] = new OtherTax(otherData.top, otherData.bottom, otherData.rate);
                 }
             }
@@ -28,10 +28,10 @@ class TaxTable {
     }
 
     calculateOtherTax(agi) {
-        var otherTax = 0;
-        var otherKeys = Object.keys(this.otherTax);
+        let otherTax = 0;
+        const otherKeys = Object.keys(this.otherTax);
         for (var i = 0; i < otherKeys.length; i++) {
-            var oT = this.otherTax[otherKeys[i]];
+            let oT = this.otherTax[otherKeys[i]];
             otherTax += oT.calculateOtherTax(agi);
         }
         return otherTax;

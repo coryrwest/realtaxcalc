@@ -23,10 +23,10 @@ class IncomeTaxTable {
             }
         }
         
-        var s = this.singleBrackets == null || this.singleBrackets.length <= 0;
-        var mj = this.marriedJointBrackets == null || this.marriedJointBrackets.length <= 0;
-        var ms = this.marriedSeparateBrackets == null || this.marriedSeparateBrackets.length <= 0;
-        var hoh = this.hohBrackets == null || this.hohBrackets.length <= 0;
+        const s = this.singleBrackets == null || this.singleBrackets.length <= 0;
+        const mj = this.marriedJointBrackets == null || this.marriedJointBrackets.length <= 0;
+        const ms = this.marriedSeparateBrackets == null || this.marriedSeparateBrackets.length <= 0;
+        const hoh = this.hohBrackets == null || this.hohBrackets.length <= 0;
         
         if(s || mj || ms || hoh) {
             throw new Error('Tax table data did not load correctly. ' + 
@@ -34,10 +34,10 @@ class IncomeTaxTable {
         }
     
         function buildBrackets(jsonBrackets) {
-            var brackets = [];
+            let brackets = [];
             for (var i = 0; i < jsonBrackets.length; i++) {
-                var current = jsonBrackets[i];
-                var bracket = new TaxBracket(current.bottom, current.top, current.rate, current.flatTax);
+                const current = jsonBrackets[i];
+                const bracket = new TaxBracket(current.bottom, current.top, current.rate, current.flatTax);
                 brackets.push(bracket);
             }
             return brackets;
@@ -46,7 +46,7 @@ class IncomeTaxTable {
     
     getBracketAndCalculateBaseTax(filingStatus, agi) {
         // Get the bracket type
-        var typedBrackets = {};
+        let typedBrackets = {};
         if(filingStatus == "single") {
             typedBrackets = this.singleBrackets;
         }
@@ -61,10 +61,10 @@ class IncomeTaxTable {
         }
         
         // Get the bracket
-        var tax = 0;
+        let tax = 0;
         
         if(agi > 0) {
-            var bracket = {};
+            let bracket = {};
             for (var i = 0; i < typedBrackets.length; i++) {        
                 if((agi < typedBrackets[i].top || typedBrackets[i].top == 0) && agi > typedBrackets[i].bottom) {
                     bracket = typedBrackets[i];
@@ -78,7 +78,7 @@ class IncomeTaxTable {
     }
     
     getBracket(filingStatus, agi) {
-        var typedBrackets = {};
+        let typedBrackets = {};
         if(filingStatus == "single") {
             typedBrackets = this.singleBrackets;
         }
@@ -93,7 +93,7 @@ class IncomeTaxTable {
         }
         
         // Get the bracket 
-        var bracketIndex = 0; 
+        let bracketIndex = 0; 
         if(agi !== 0) {
             for (var i = 0; i < typedBrackets.length; i++) {        
                 if((agi < typedBrackets[i].top || typedBrackets[i].top == 0) && agi > typedBrackets[i].bottom) {

@@ -7,9 +7,9 @@ class TaxBracket {
     }
     
     calculateBracketTax(income) {
-        var totalTaxForBracket = 0;
-        var taxableInBracket = 0;
-        var bottom = 0;
+        let totalTaxForBracket = 0;
+        let taxableInBracket = 0;
+        let bottom = 0;
         // Get the bottom, if we are lowest use the provided value,
         // otherwise subtract one.
         if(this.bottom != 0) {
@@ -20,7 +20,7 @@ class TaxBracket {
             totalTaxForBracket = this.flatTax;
         }
         // Are we above the bottom of the bracket?
-        var taxForTaxableAmount = 0;
+        let taxForTaxableAmount = 0;
         if(income > this.bottom) {
             taxableInBracket = income - bottom;
             taxForTaxableAmount = taxableInBracket * this.taxRate;

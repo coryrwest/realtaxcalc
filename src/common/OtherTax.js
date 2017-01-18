@@ -6,7 +6,7 @@ class OtherTax {
     }
     
     calculateOtherTax(income) {
-        var totalTax = 0;
+        let totalTax = 0;
         // Are we using a cut-off or a floor?
         if(this.top !== undefined && this.top !== null && this.top > 0) {
             // cut-off

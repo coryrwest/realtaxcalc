@@ -1,17 +1,17 @@
-var React = require('react');
-var Utils = require('../utils');
+import React from 'react';
+import Utils from '../utils';
 
-var TaxPicture = require('../common/TaxPicture');
-var FedTaxData = require('json!../data/2015-Fed.json');
-var StateTaxData = {
+import TaxPicture from '../common/TaxPicture';
+const FedTaxData = require('json!../data/2015-Fed.json');
+const StateTaxData = {
     'CA' : require('json!../data/2015-CA.json'),
     'TN' : require('json!../data/2015-TN.json')
 };
 
-var BracketDisplayComponent = React.createClass({
+let BracketDisplayComponent = React.createClass({
     getBracket: function() {
         // Build scenario data
-        var scenarioData = {
+        const scenarioData = {
             agi : this.props.state[this.props.index].agi,
             personalExemp : this.props.state[this.props.index].personalExemp,
             spouseExemp : this.props.state[this.props.index].spouseExemp,
@@ -20,16 +20,16 @@ var BracketDisplayComponent = React.createClass({
             filingStatus : this.props.state[this.props.index].currentFilingStatus
         };
         
-        this.picture = new TaxPicture.default(FedTaxData, StateTaxData[this.props.state[this.props.index].state], scenarioData);
+        this.picture = new TaxPicture(FedTaxData, StateTaxData[this.props.state[this.props.index].state], scenarioData);
                
         // Federal Brackets
-        var fedTaxTable = this.picture.fed.taxTable;
+        const fedTaxTable = this.picture.fed.taxTable;
         var fedBrackets = fedTaxTable.incomeTax.getBracket(this.props.state[this.props.index].currentFilingStatus, this.picture.fed.taxableIncome);
         this.fedBracketIndex = fedBrackets[0];
         this.fedBrackets = fedBrackets[1];
         
         // State Brackets
-        var stateTaxTable = this.picture.state.taxTable;
+        const stateTaxTable = this.picture.state.taxTable;
         var stateBrackets = stateTaxTable.incomeTax.getBracket(this.props.state[this.props.index].currentFilingStatus, this.picture.state.taxableIncome);
         this.stateBracketIndex = stateBrackets[0];
         this.stateBrackets = stateBrackets[1];

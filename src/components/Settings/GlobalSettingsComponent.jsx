@@ -1,9 +1,9 @@
-var React = require('react');
+import React from 'react';
 var Formsy = require('formsy-react');
 var Checkbox = require('formsy-react-components').Checkbox;
-var State = require('../../state');
+import State from '../../state';
 
-var GlobalSettingsComponent = React.createClass({
+let GlobalSettingsComponent = React.createClass({
     updateOption: function(name, value) {
         State.trigger('setting:set', name, value, this.props.index);
     },
@@ -12,12 +12,12 @@ var GlobalSettingsComponent = React.createClass({
 	},
     render: function () {
       return (
-        <Formsy.Form>
-            <h3>Tax Options:</h3>
-            <Checkbox name="displayState" rowLabel="Use State Tax"
-                value={this.props.state[this.props.index].displayState}
-                onChange={this.updateOption}/>
-        </Formsy.Form>
+            <Formsy.Form>
+                <h3>Tax Options:</h3>
+                <Checkbox name="displayState" rowLabel="Use State Tax"
+                    value={this.props.state[this.props.index].displayState}
+                    onChange={this.updateOption}/>
+            </Formsy.Form>
       );
     }
 });

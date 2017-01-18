@@ -1,4 +1,4 @@
-module.exports = {
+let Globals = {
     storeName: 'realTaxCalc:taxSettings',
     scenarioStoreName: 'realTaxCalc:scenarioSettings',
     filingStatuses: [
@@ -48,3 +48,5 @@ module.exports = {
         },
     ]
 };
+
+export default Globals;

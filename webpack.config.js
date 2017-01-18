@@ -13,13 +13,11 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.jsx$/, 
-                loaders: ['jsx-loader?harmony'], 
+                test: /\.(jsx|js)$/, loader: 'babel-loader', query: {
+                    presets: ['react', 'es2015']
+                },
                 include: path.join(__dirname, 'src')
             },
-            { test: /\.js$/, loader: 'babel-loader', query: {
-                presets: ['react', 'es2015']
-            }},
             { test: /\.scss$/, loaders: ['style', 'css', 'sass'] }
         ]
     },

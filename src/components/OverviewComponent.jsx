@@ -1,20 +1,19 @@
-var React = require('react');
-var Utils = require('../utils');
-var Popover = require('react-bootstrap').Popover;
-var OverlayTrigger = require('react-bootstrap').OverlayTrigger;
+import React from 'react';
+import Utils from '../utils';
+import { Popover, OverlayTrigger} from 'react-bootstrap';
 
-var TaxPicture = require('../common/TaxPicture');
+import TaxPicture from '../common/TaxPicture';
 // Figure out a better way to do this
-var FedTaxData = require('json!../data/2015-' + 'Fed' + '.json');
-var StateTaxData = {
+const FedTaxData = require('json!../data/2015-' + 'Fed' + '.json');
+const StateTaxData = {
     'CA' : require('json!../data/2015-CA.json'),
     'TN' : require('json!../data/2015-TN.json')
 };
 
-var OverviewComponent = React.createClass({
+let OverviewComponent = React.createClass({
     calculateTaxes: function() {
         // Build scenario data
-        var scenarioData = {
+        let scenarioData = {
             agi : this.props.state[this.props.index].agi,
             personalExemp : this.props.state[this.props.index].personalExemp,
             spouseExemp : this.props.state[this.props.index].spouseExemp,
@@ -23,7 +22,7 @@ var OverviewComponent = React.createClass({
             filingStatus : this.props.state[this.props.index].currentFilingStatus
         };
         
-        this.picture = new TaxPicture.default(FedTaxData, StateTaxData[this.props.state[this.props.index].state], scenarioData);
+        this.picture = new TaxPicture(FedTaxData, StateTaxData[this.props.state[this.props.index].state], scenarioData);
     },
     render: function render() {
         this.calculateTaxes();

@@ -1,15 +1,15 @@
-var React = require('react');
+import React from 'react';
 var NavBarComponent = require('./NavBarComponent.jsx');
 var BodyComponent = require('./BodyComponent.jsx');
 
-require('../styles/style.scss');
+import '../styles/style.scss';
 
-var ContainerComponent = React.createClass({
+let ContainerComponent = React.createClass({
     render: function() {
         return (
             <div>
-            <NavBarComponent /> 
-            <BodyComponent />     
+                <NavBarComponent /> 
+                <BodyComponent />     
             </div>
         );
     }
