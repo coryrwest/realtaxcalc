@@ -24,16 +24,16 @@ State.on('setting:set', function(name, value, scenarioIndex){
     console.log('Setting ' + name + ' ' + value + ' Saving');
     let setting = {};
     setting[name] = value;
-    State.get()[scenarioIndex].set(setting);
+    State.get().scenarios[scenarioIndex].set(setting);
     // Save the state in localStorage
     Utils.store(Globals.storeName, State.get());
     console.log('Setting ' + name + ' ' + value + ' Saved');
 });
 
 
-State.on('scenario:reset', function(){
+State.on('scenario:reset', function(i){
     // Reset the store
-    State.get().set(Globals.defaultState);
+    State.get().scenarios[i].set(Globals.defaultState);
     // Save the state in localStorage
     Utils.store(Globals.storeName, State.get());
     console.log('State reset');
@@ -42,24 +42,35 @@ State.on('scenario:reset', function(){
 // TODO: look into using Freezers Array nodes:
 // https://github.com/arqex/freezer#update-methods
 State.on('state:newScenario', function(){
-    let scenarios = State.get();
+    let state = State.get();
     
-	if(scenarios.length < 2) {
-		State.get().set(1, Globals.defaultState[0]);
-	}
+    if(state.scenarios.length < 5) {
+        State.get().scenarios.set(state.scenarios.length, Globals.defaultState);
+    }
+    
     // Save the state in localStorage
     Utils.store(Globals.storeName, State.get());
 });
 
-State.on('state:deleteScenario', function(){
-    let scenarios = State.get();
+State.on('state:deleteScenario', function(i){
+    let state = State.get();
 	
-	if(scenarios.length > 1) {
-        var newScenarios = [];
-        newScenarios[0] = scenarios[0];
-		State.get().reset(newScenarios);
-	}
+    var newScenarios = [];
+    newScenarios = state.scenarios.splice(i, 1);
+	State.get().scenarios.reset(newScenarios);
+	
     // Save the state in localStorage
     Utils.store(Globals.storeName, State.get());
+});
+
+
+State.on('state:resetall', function(i){
+    let state = Globals;
+    state.scenarios[0] = Globals.defaultState;
+    // Reset the store
+    State.get().set(state);
+    // Save the state in localStorage
+    Utils.store(Globals.storeName, State.get());
+    console.log('Full state reset');
 });
 

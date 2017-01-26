@@ -21,43 +21,48 @@ let BodyComponent = React.createClass({
     addScenario: function () {
         State.trigger('state:newScenario');
     },
-    removeScenario: function () {
-        State.trigger('state:deleteScenario');
+    resetAppData: function () {
+        State.trigger('state:resetall');
     },
     render: function() {
         let state = State.get();
         
-        let secScenario;
-        if(state.length > 1) {
-            secScenario = <ScenarioContainer state={state} index="1" />;
-        }
-        
         return (
-            <div className="container">
+            <div className={state.scenarios.length > 3 ? 'container-fluid': 'container'}>
                 <div className="row">
                     <div className="col-md-12">
                     <p className="bs-callout bs-callout-info">This tax calulator was built to give you a complete image of your tax burden. 
-                        Including FICA and other state or local taxes that you will have to pay. 
-                        Most other online calculators do not give you the full picture when you are trying to calculate your tax. 
-                        This tries to.</p>
+                        Including FICA and other state or local taxes that you will have to pay. Most other online calculators do not give 
+                        you the full picture when you are trying to calculate your tax. This one tries to. This calculator focuses on the 
+                        money that gets withheld from your paycheck in order to calculate take home pay. It does not attempt to account 
+                        for decductions or other credits that you may have when filing your tax return.</p>
                     </div>
                 </div>
                 <div className="row">
+                    {state.scenarios.map((e, i) => {
+                        return <div className={state.scenarios.length == 3 ? 'col-md-4': state.scenarios.length == 4 ? 'col-md-3': 'col-md-6'}>
+                            <div className="row">
+                                <div className="col-md-12">
+                                        <ScenarioContainer scenarioSettings={e} index={i} />
+                                </div>
+                            </div>
+                        </div>
+                    })}
                     <div className="col-md-6">
                         <div className="row">
-                            <div className="col-md-12">
-                                <ScenarioContainer state={state} index="0" />
+                            <div className={state.scenarios.length < 4 ? "visible" : "hidden"}>
+                                <button className="btn btn-default" onClick={this.addScenario}>Add Scenario</button>
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6">
+                </div>
+                <hr />
+                <div className="row">
+                    <div className="col-md-12">
                         <div className="row">
-                            <div className={state.length < 2 ? "visible" : "hidden"}>
-                                <button className="btn btn-default" onClick={this.addScenario}>Add Scenario</button>
-                            </div>
-                            <div className={state.length > 1 ? "visible" : "hidden"}>
-                                {secScenario}
-                                <button className="btn btn-default" onClick={this.removeScenario}>Remove Scenario</button>
+                            <div>
+                                <button className="btn btn-default" onClick={this.resetAppData}>Reset Application Data</button>
+                                <p>Use this button if the app is not working as expected to reset all saved data.</p>
                             </div>
                         </div>
                     </div>

@@ -16,7 +16,7 @@ let StateSettingsComponent = React.createClass({
                 <Select
                     name="state"
                     label="Filing State"
-                    value={this.props.state[this.props.index].state}
+                    value={this.props.scenarioSettings.state}
                     options={Globals.states}
                     required
                     validations="isWords"

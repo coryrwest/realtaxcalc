@@ -14,15 +14,15 @@ let OverviewComponent = React.createClass({
     calculateTaxes: function() {
         // Build scenario data
         let scenarioData = {
-            agi : this.props.state[this.props.index].agi,
-            personalExemp : this.props.state[this.props.index].personalExemp,
-            spouseExemp : this.props.state[this.props.index].spouseExemp,
-            dependents : this.props.state[this.props.index].dependents,
-            deduction : this.props.state[this.props.index].standardDeduction ? true : this.props.state[this.props.index].itemizedDeduction,
-            filingStatus : this.props.state[this.props.index].currentFilingStatus
+            agi : this.props.scenarioSettings.agi,
+            personalExemp : this.props.scenarioSettings.personalExemp,
+            spouseExemp : this.props.scenarioSettings.spouseExemp,
+            dependents : this.props.scenarioSettings.dependents,
+            deduction : this.props.scenarioSettings.standardDeduction ? true : this.props.scenarioSettings.itemizedDeduction,
+            filingStatus : this.props.scenarioSettings.currentFilingStatus
         };
         
-        this.picture = new TaxPicture(FedTaxData, StateTaxData[this.props.state[this.props.index].state], scenarioData);
+        this.picture = new TaxPicture(FedTaxData, StateTaxData[this.props.scenarioSettings.state], scenarioData);
     },
     render: function render() {
         this.calculateTaxes();
@@ -44,14 +44,14 @@ let OverviewComponent = React.createClass({
         return (
             <div className="row">
                 <div className="col-md-12">
-                    <div className={this.props.state[this.props.index].displayState ? "visible" : "hidden"}>
+                    <div className={this.props.scenarioSettings.displayState ? "visible" : "hidden"}>
                         <h3>Total Tax Breakdown:</h3>
                         <table className="table table-striped data-table">
                             <tbody>
                                 <tr>
                                     <td>Adjusted Gross Income:</td>
                                     <td>
-                                        <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.picture.agi)}</p>
+                                        <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.picture.agi)}</p>
                                     </td>
                                 </tr><tr>
                                     <td>Income Tax:</td>
@@ -99,7 +99,7 @@ let OverviewComponent = React.createClass({
                             <tr>
                                 <td>Adjusted Gross Income:</td>
                                 <td>
-                                    <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.picture.agi)}</p>
+                                    <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.picture.agi)}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -159,14 +159,14 @@ let OverviewComponent = React.createClass({
                         </tbody>
                     </table>  
                     
-                    <div className={this.props.state[this.props.index].displayState ? "visible" : "hidden"}>
+                    <div className={this.props.scenarioSettings.displayState ? "visible" : "hidden"}>
                         <h3>State Tax Breakdown:</h3>
                         <table className="table table-striped data-table">
                             <tbody>
                                 <tr>
                                     <td>Adjusted Gross Income:</td>
                                     <td>
-                                        <p className="text-right nopad nomar">- {Utils.cleanAndFormatMoney(this.picture.agi)}</p>
+                                        <p className="text-right nopad nomar">{Utils.cleanAndFormatMoney(this.picture.agi)}</p>
                                     </td>
                                 </tr>
                                 <tr>

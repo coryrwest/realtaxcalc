@@ -3,7 +3,12 @@ import Utils from './utils';
 import Globals from './globals';
 
 // Try to recover the state from the localStorage
-const globalState = Utils.store(Globals.storeName) || Globals.defaultState;
+let globalState = Utils.store(Globals.storeName) || Globals;
+
+// Add first scenario
+if(globalState.scenarios.length == 0) {
+    globalState.scenarios.push(globalState.defaultState);
+}
 
 // var scenarioState = Utils.store(Globals.scenarioStoreName) ||
 // {

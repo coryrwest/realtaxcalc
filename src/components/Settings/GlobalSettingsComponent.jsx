@@ -8,14 +8,14 @@ let GlobalSettingsComponent = React.createClass({
         State.trigger('setting:set', name, value, this.props.index);
     },
     shouldComponentUpdate: function( nextProps ){
-		return nextProps.state != this.props.state;
+		return nextProps.scenarioSettings != this.props.scenarioSettings;
 	},
     render: function () {
       return (
             <Formsy.Form>
                 <h3>Tax Options:</h3>
                 <Checkbox name="displayState" rowLabel="Use State Tax"
-                    value={this.props.state[this.props.index].displayState}
+                    value={this.props.scenarioSettings.displayState}
                     onChange={this.updateOption}/>
             </Formsy.Form>
       );

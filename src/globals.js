@@ -24,8 +24,7 @@ let Globals = {
         //     label : "Qualifying Widow(er)"
         // }
     ],
-    defaultState: [
-        {
+    defaultState: {
             displayState: false,
             state: 'CA',
             agi: 0,
@@ -35,8 +34,7 @@ let Globals = {
             dependents: 0,
             standardDeduction: true,
             itemizedDeduction: 0
-        }
-    ],
+    },
     states: [
         {
             value : "CA",
@@ -46,7 +44,8 @@ let Globals = {
             value : "TN",
             label : "Tennessee"
         },
-    ]
+    ],
+    scenarios: []
 };
 
 export default Globals;

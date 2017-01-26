@@ -16,18 +16,18 @@ let FederalSettingsComponent = React.createClass({
             <div>
                 <Checkbox
                     name="standardDeduction"
-                    value={this.props.state[this.props.index].standardDeduction}
+                    value={this.props.scenarioSettings.standardDeduction}
                     label=""
                     rowLabel="Standard Deduction"
                     onChange={this.updateOption}
                     labelClassName={[{'col-sm-3': false}, 'col-sm-4']}
                     elementWrapperClassName={[{'col-sm-9': false}, 'col-sm-8']}
                 />
-                <div className={this.props.state[this.props.index].standardDeduction ? 'hidden' : 'visible'}>
+                <div className={this.props.scenarioSettings.standardDeduction ? 'hidden' : 'visible'}>
                     <Input
                         name="itemizedDeduction"
                         id="itemizedDeduction"
-                        value={this.props.state[this.props.index].itemizedDeduction}
+                        value={this.props.scenarioSettings.itemizedDeduction}
                         label="Itemized Deductions"
                         type="text"
                         onChange={this.updateOption}

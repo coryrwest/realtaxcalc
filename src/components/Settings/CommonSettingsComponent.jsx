@@ -18,7 +18,7 @@ let CommonSettingsComponent = React.createClass({
                 <Select
                     name="currentFilingStatus"
                     label="Filing Status"
-                    value={this.props.state[this.props.index].currentFilingStatus}
+                    value={this.props.scenarioSettings.currentFilingStatus}
                     options={Globals.filingStatuses}
                     required
                     validations="isWords"
@@ -30,7 +30,7 @@ let CommonSettingsComponent = React.createClass({
                 <Input
                     name="agi"
                     id="agi"
-                    value={this.props.state[this.props.index].agi}
+                    value={this.props.scenarioSettings.agi}
                     label="Income"
                     type="text"
                     required
@@ -43,7 +43,7 @@ let CommonSettingsComponent = React.createClass({
                 <Input
                     name="dependents"
                     id="dependents"
-                    value={this.props.state[this.props.index].dependents}
+                    value={this.props.scenarioSettings.dependents}
                     label="Dependents"
                     type="text"
                     onChange={this.updateOption}
@@ -52,7 +52,7 @@ let CommonSettingsComponent = React.createClass({
                 />
                 <Checkbox
                     name="personalExemp"
-                    value={this.props.state[this.props.index].personalExemp}
+                    value={this.props.scenarioSettings.personalExemp}
                     label=""
                     rowLabel="Personal Exemption"
                     onChange={this.updateOption}
@@ -61,7 +61,7 @@ let CommonSettingsComponent = React.createClass({
                 />
                 <Checkbox
                     name="spouseExemp"
-                    value={this.props.state[this.props.index].spouseExemp}
+                    value={this.props.scenarioSettings.spouseExemp}
                     label=""
                     rowLabel="Spouse Exemption"
                     onChange={this.updateOption}

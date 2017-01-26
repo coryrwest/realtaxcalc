@@ -21,6 +21,8 @@ class TaxPicture {
         this.incomeTax = this.fed.incomeTax + this.state.incomeTax;
         this.otherTax = this.fed.otherTax + this.state.otherTax;
         this.totalTax = this.fed.totalTax + this.state.totalTax;
+        this.percent = 0;
+        this.takeHomePay = this.agi;
         if(this.totalTax > 0) {
             // Percent
             this.percent = (this.totalTax / this.agi) * 100;    
