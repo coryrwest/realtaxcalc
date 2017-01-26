@@ -27,6 +27,12 @@ let BodyComponent = React.createClass({
     render: function() {
         let state = State.get();
         
+        window.onerror = (message,file,line,column,errorObject) => {
+            console.log(message);
+            console.log("uncaught error, resetting state");
+            State.trigger('state:resetall');
+        }
+        
         return (
             <div className={state.scenarios.length > 3 ? 'container-fluid': 'container'}>
                 <div className="row">

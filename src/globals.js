@@ -45,7 +45,8 @@ let Globals = {
             label : "Tennessee"
         },
     ],
-    scenarios: []
+    scenarios: [],
+    expiration: ''
 };
 
 export default Globals;

@@ -9,12 +9,14 @@ completely decoupled from actions/reactions.
 import State from './state';
 import Utils from './utils';
 import Globals from './globals';
+import moment from 'moment';
 
 /**
  * Sets a setting.
  * @param  {Key} The setting key. {Value} The setting value.
  */
 State.on('state:initialize', function() {
+    // If state doesnt exist in localStorage put it there.
     if(!Utils.storeExists(Globals.storeName)) {
         Utils.store(Globals.storeName, State.get()); 
     }
@@ -64,7 +66,7 @@ State.on('state:deleteScenario', function(i){
 });
 
 
-State.on('state:resetall', function(i){
+State.on('state:resetall', function(){
     let state = Globals;
     state.scenarios[0] = Globals.defaultState;
     // Reset the store
